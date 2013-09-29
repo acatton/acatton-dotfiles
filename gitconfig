@@ -1,0 +1,18 @@
+[merge]
+  ff = false
+
+[user]
+  name = Antoine Catton
+  email = devel@antoine.catton.fr
+
+[log]
+  decorate = true
+
+[color]
+  ui = always
+
+[color "decorate"]
+  HEAD = blue
+  tag = black bold
+  remoteBranch = red
+  branch = green

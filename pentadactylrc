@@ -1,0 +1,18 @@
+source ~/.pentadactylrc_bepo_remap
+
+map E gé
+map I gb
+
+map -builtin <C-r> <C-o>
+map -builtin <C-h> <C-i>
+
+map -builtin T <C-d>
+map -builtin S <C-u>
+
+"map -builtin I <C-n>
+"map -builtin E <C-p>
+
+" Hints with home row (bépo)
+set hintkeys="auietsrn"
+" Bigger hints
+hi -a Hint font-size: 13px !important;

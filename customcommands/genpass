@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+len=${1:-10}
+
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $len | head -n 50 | fmt -w $(( $len * 5 + 5 ))
+true

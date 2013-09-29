@@ -1,0 +1,19 @@
+alias ls="ls --color=auto"
+alias la="ls -A --color=auto"
+alias ll="ls -lh --color=auto"
+alias lla="ls -Alh --color=auto"
+
+export GREP_COLOR=31
+alias grep='grep --color=auto'
+
+alias compilepy='python -m py_comile'
+
+alias tree="tree -C"
+
+alias mv="mv -i"
+alias rm="rm -i"
+
+alias g="git"
+
+alias vim="vimx"
+alias vi="vimx"

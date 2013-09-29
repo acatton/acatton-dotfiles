@@ -1,0 +1,24 @@
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = https://github.com/wincent/Command-T
+[submodule "vim/bundle/neocomplcache"]
+	path = vim/bundle/neocomplcache
+	url = https://github.com/Shougo/neocomplcache.vim
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "vim/bundle/pyflakes"]
+	path = vim/bundle/pyflakes
+	url = https://github.com/kevinw/pyflakes-vim
+[submodule "vim/bundle/vala"]
+	path = vim/bundle/vala
+	url = https://github.com/tkztmk/vim-vala
+[submodule "vim/bundle/easymotion"]
+	path = vim/bundle/easymotion
+	url = https://github.com/Lokaltog/vim-easymotion
+[submodule "vim/pathogen"]
+	path = vim/pathogen
+	url = https://github.com/tpope/vim-pathogen
+[submodule "zsh/syntax-highlighting"]
+	path = zsh/syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting

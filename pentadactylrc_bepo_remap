@@ -1,0 +1,40 @@
+map -builtin é w
+map -builtin É W
+map -builtin aé aw
+map -builtin aÉ aW
+map -builtin w <C-w>
+map -builtin W <C-w><C-w>
+
+map -builtin c h
+map -builtin r l
+map -builtin t j
+map -builtin s k
+map -builtin C H
+map -builtin R L
+map -builtin T J
+map -builtin S K
+map -builtin zs zj
+map -builtin zt zk
+
+map -builtin j t
+map -builtin J T
+map -builtin l c
+map -builtin L C
+map -builtin h r
+map -builtin H R
+map -builtin k s
+map -builtin K S
+map -builtin ]k ]s
+map -builtin [k [s
+
+map -builtin gs gk
+map -builtin gt gj
+map -builtin gb gT
+map -builtin gé gt
+map -builtin gB :exe "silent! tabfirst"<CR>
+map -builtin gÉ :exe "silent! tablast"<CR>
+map -builtin « <
+map -builtin » >
+
+map -builtin w« <C-w><
+map -builtin w« <C-w>>
