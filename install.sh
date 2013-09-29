@@ -3,7 +3,7 @@ set -e
 
 PROJECT_DIRECTORY=$(readlink -f $(dirname "$0"))
 
-FILES=$(ls -1 "$PROJECT_DIRECTORY" | egrep -v "^install.sh$")
+FILES=$(ls -1 "$PROJECT_DIRECTORY" | egrep -v "^(install.sh|README.md)$")
 
 for f in $FILES
 do
