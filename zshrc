@@ -32,7 +32,8 @@ unsetopt listambiguous
 zmodload zsh/terminfo
 
 export EDITOR="vimx"
-export PAGER="less"
+export PAGER="most"
+export GIT_PAGER="less"
 export VISUAL="vimx"
 
 export PATH="${PATH}:${HOME}/.customcommands/"
