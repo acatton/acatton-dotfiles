@@ -16,3 +16,7 @@
   tag = black bold
   remoteBranch = red
   branch = green
+
+[alias]
+  sync = pull --rebase
+  ci = commit
