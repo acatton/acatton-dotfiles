@@ -17,3 +17,5 @@ alias g="git"
 
 alias vim="vimx"
 alias vi="vimx"
+
+alias pm="python manage.py"
