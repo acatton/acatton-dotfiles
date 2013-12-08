@@ -1,3 +1,6 @@
 [extensions]
 mq =
 histedit =
+
+[ui]
+username = Antoine Catton <devel@antoine.catton.fr>
