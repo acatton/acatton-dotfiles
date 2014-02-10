@@ -7,9 +7,6 @@
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree
-[submodule "vim/bundle/pyflakes"]
-	path = vim/bundle/pyflakes
-	url = https://github.com/kevinw/pyflakes-vim
 [submodule "vim/bundle/vala"]
 	path = vim/bundle/vala
 	url = https://github.com/tkztmk/vim-vala
