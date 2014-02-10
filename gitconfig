@@ -18,5 +18,7 @@
   branch = green
 
 [alias]
-  sync = pull --rebase
   ci = commit
+
+[pull]
+  rebase = true
