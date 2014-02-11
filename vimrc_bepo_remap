@@ -49,3 +49,9 @@ let NERDTreeMapJumpPrevSibling='S'
 let NERDTreeMapChdir='L'
 let NERDTreeMapRefresh='h'
 let NERDTreeMapRefreshRoot='H'
+
+" XXX: Source surround in order to unmap
+source ~/.vim/bundle/vim-surround/plugin/surround.vim
+nunmap cs
+
+nmap ls  <Plug>Csurround
