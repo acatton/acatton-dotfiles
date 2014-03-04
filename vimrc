@@ -4,10 +4,6 @@ set nocompatible
 " Bepo layout remap
 source ~/.vimrc_bepo_remap
 
-" Use lucius color scheme
-let g:lucius_style = "light"
-colorscheme lucius
-
 
 " Highlight search result
 set hls
