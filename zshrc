@@ -20,7 +20,7 @@ zstyle ':completion:*:processes' command 'ps -au$USER'
 alias find='noglob find' # Avoid nomatch found on find
 
 # ZSH highlighting
-source /home/antoine/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[path]='fg=black,bold'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=magenta,bold'
