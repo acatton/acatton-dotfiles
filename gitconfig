@@ -1,9 +1,12 @@
 [merge]
   ff = false
 
-[user]
-  name = Antoine Catton
-  email = devel@antoine.catton.fr
+# Put this in ~/.gitconfig.d/identity
+#[user]
+#  name = Antoine Catton
+#  email = devel@antoine.catton.fr
+[include]
+  path = ~/.gitconfig.d/identity
 
 [log]
   decorate = true

@@ -21,3 +21,6 @@ do
 		ln -s "$f" "$target"
 	fi
 done
+
+mkdir -p "${HOME}/.gitconfig.d/"
+mkdir -p "${HOME}/.hgrc.d/"

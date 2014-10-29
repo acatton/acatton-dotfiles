@@ -2,5 +2,7 @@
 mq =
 histedit =
 
-[ui]
-username = Antoine Catton <devel@antoine.catton.fr>
+# Put this in ~/.hgrc.d/identity
+#[ui]
+#username = Antoine Catton <devel@antoine.catton.fr>
+%include ~/.hgrc.d/identity

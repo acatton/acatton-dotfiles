@@ -81,3 +81,5 @@ let g:neocomplcache_enable_fuzzy_completion = 1
 
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_enable_signs=0
+
+set t_Co=256
