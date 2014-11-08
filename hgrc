@@ -1,6 +1,11 @@
 [extensions]
 mq =
 histedit =
+pager =
+purge =
+
+[pager]
+pager = most
 
 # Put this in ~/.hgrc.d/identity
 #[ui]
