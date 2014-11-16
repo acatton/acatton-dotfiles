@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+
+PKGS_PATH="$HOME/.pkgs"
+
+pkgenable() {
+    case $1 in
+        rust|cargo)
+            P="$PKGS_PATH/rust/"
+            export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$P/lib/"
+            export PATH="$PATH:$P/bin/"
+            ;;
+        ocaml|opam)
+            P=$(ls -1 /home/antoine/.pkgs/ocaml/*/etc/ocamlbrew.bashrc | sort -r | head -n 1)
+            source $P
+            ;;
+        *)
+            echo "No such package"
+            return 127
+            ;;
+    esac
+}

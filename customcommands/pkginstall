@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Shebang only accept one argument.
+#    #!/usr/bin/env bash -e
+# wouldn't worked
+set -e 
+
+PKG_DIR="$HOME/.pkgs/"
+
+mkdir -p "$PKG_DIR"
+
+case $1 in
+    rust|cargo)
+        DEST="$PKG_DIR/rust/"
+        mkdir -p "$DEST"
+        curl https://static.rust-lang.org/rustup.sh | bash -s -- --prefix="$DEST"
+        ;;
+    ocaml|opam)
+        DEST="$PKG_DIR/ocaml/"
+        mkdir -p "$DEST"
+        curl https://raw.githubusercontent.com/hcarty/ocamlbrew/master/ocamlbrew-install | env OCAMLBREW_FLAGS="-r -b $DEST" bash
+        ;;
+    *)
+        echo "Pkgs unknown"
+        exit 127
+esac
