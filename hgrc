@@ -2,12 +2,25 @@
 mq =
 histedit =
 pager =
+color =
+shelve =
+rebase =
+transplant =
 purge =
 
 [pager]
 pager = most
 
+[color]
+mode = auto
+log.changeset = magenta
+diff.diffline = black bold
+
 # Put this in ~/.hgrc.d/identity
 #[ui]
 #username = Antoine Catton <devel@antoine.catton.fr>
 %include ~/.hgrc.d/identity
+
+# In local hgrc
+#[ui]
+#ignore = .hg/hgignore
