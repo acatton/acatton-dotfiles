@@ -20,6 +20,11 @@ case $1 in
         mkdir -p "$DEST"
         curl https://raw.githubusercontent.com/hcarty/ocamlbrew/master/ocamlbrew-install | env OCAMLBREW_FLAGS="-r -b $DEST" bash
         ;;
+    ruby|rails|rvm)
+        DEST="$PKG_DIR/rvm"
+        #mkdir -p "$DEST"
+        curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles --path "$DEST" --user-install stable
+        ;;
     *)
         echo "Pkgs unknown"
         exit 127

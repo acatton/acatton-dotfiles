@@ -10,8 +10,13 @@ pkgenable() {
             export PATH="$PATH:$P/bin/"
             ;;
         ocaml|opam)
-            P=$(ls -1 /home/antoine/.pkgs/ocaml/*/etc/ocamlbrew.bashrc | sort -r | head -n 1)
+            P=$(ls -1 "$PKGS_PATH"/ocaml/*/etc/ocamlbrew.bashrc | sort -r | head -n 1)
             source $P
+            ;;
+        ruby|rail|rvm)
+            P="$PKGS_PATH/rvm"
+            export rvm_path=$P
+            source "$P/scripts/rvm"
             ;;
         *)
             echo "No such package"
