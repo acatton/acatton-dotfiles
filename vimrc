@@ -83,3 +83,5 @@ let g:syntastic_python_checkers=['flake8']
 let g:syntastic_enable_signs=0
 
 set t_Co=256
+
+let ropevim_vim_completion=1
