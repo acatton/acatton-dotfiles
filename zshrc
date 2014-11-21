@@ -78,4 +78,4 @@ export QT_IM_MODULE=ibus
 # Custom aliases
 source ~/.zshrc_aliases
 # Homemade functions
-source ~/.zshrc_functions
+for i in ~/.zshrc_functions/*; source $i

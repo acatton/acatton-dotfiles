@@ -16,7 +16,6 @@ mode = auto
 log.changeset = magenta
 diff.diffline = black bold
 
-
 # Put this in ~/.hgrc.d/identity
 #[ui]
 #username = Antoine Catton <devel@antoine.catton.fr>
