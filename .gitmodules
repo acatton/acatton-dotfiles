@@ -37,3 +37,6 @@
 [submodule "vim/bundle/ropevim"]
 	path = vim/bundle/ropevim
 	url = git://github.com/python-rope/ropevim.git
+[submodule "vim/bundle/less"]
+	path = vim/bundle/less
+	url = git://github.com/groenewege/vim-less
