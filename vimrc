@@ -87,3 +87,6 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 set t_Co=256
 
 let ropevim_vim_completion=1
+
+highlight UnderCursor ctermbg=153
+autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
