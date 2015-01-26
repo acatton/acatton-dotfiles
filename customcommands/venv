@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+# Use current dir or the directory speci
+if [ "x${1}" = "x" ]
+then
+    dst="$PWD"
+else
+    dst=$(readlink -f "$1")
+fi
+
+cursor="$dst"
+until [ "${cursor}" = "/" ]
+do
+    if [ -d "${cursor}/.git" ]
+    then
+        name=$(basename "$cursor")
+        venv="${cursor}/.${name}"
+        virtualenv "$venv"
+        echo "/.${name}" >> "${cursor}/.git/info/exclude"
+        exit 0
+    fi
+    cursor=$(dirname "$cursor")
+done
+
+name=$(basename "$dst")
+venv="${dst}/.${name}"
+virtualenv "$venv"
