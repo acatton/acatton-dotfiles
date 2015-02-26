@@ -7,6 +7,7 @@ shelve =
 rebase =
 transplant =
 purge =
+record =
 
 [pager]
 pager = most
@@ -15,6 +16,9 @@ pager = most
 mode = auto
 log.changeset = magenta
 diff.diffline = black bold
+
+[ui]
+merge = internal:merge
 
 # Put this in ~/.hgrc.d/identity
 #[ui]
