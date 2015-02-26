@@ -92,3 +92,6 @@ highlight UnderCursor ctermbg=153
 autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 let g:CommandTAcceptSelectionSplitMap=['<C-g>']
+
+" Remove trailing spaces
+autocmd BufWritePre *.{py,c,cpp,ml,rb,hs} :%s/\s\+$//e
