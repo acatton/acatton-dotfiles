@@ -90,3 +90,5 @@ let ropevim_vim_completion=1
 
 highlight UnderCursor ctermbg=153
 autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+let g:CommandTAcceptSelectionSplitMap=['<C-g>']
