@@ -1,27 +1,57 @@
 #!/usr/bin/env sh
 
+usage()
+{
+    echo "Usage: $0 [-p <interpreter>] [directory]" > /dev/stderr
+    exit 127
+}
+
+create_venv()
+{
+    if [ "x${PYTHON}" == "x" ]
+    then
+        virtualenv "$1"
+    else
+        virtualenv -p "$PYTHON" "$1"
+    fi
+}
+
+while getopts ":p:" o
+do
+    case "$o" in
+        p)
+            PYTHON="${OPTARG}"
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
 # Use current dir or the directory speci
 if [ "x${1}" = "x" ]
 then
-    dst="$PWD"
+    DST="$PWD"
 else
-    dst=$(readlink -f "$1")
+    DST=$(readlink -f "$1")
 fi
 
-cursor="$dst"
+cursor="$DST"
 until [ "${cursor}" = "/" ]
 do
     if [ -d "${cursor}/.git" ]
     then
         name=$(basename "$cursor")
         venv="${cursor}/.${name}"
-        virtualenv "$venv"
+        create_venv "$venv"
         echo "/.${name}" >> "${cursor}/.git/info/exclude"
         exit 0
     fi
     cursor=$(dirname "$cursor")
 done
 
-name=$(basename "$dst")
-venv="${dst}/.${name}"
-virtualenv "$venv"
+name=$(basename "$DST")
+venv="${DST}/.${name}"
+create_venv "$venv"
