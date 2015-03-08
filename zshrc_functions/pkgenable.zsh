@@ -18,6 +18,9 @@ pkgenable() {
             export rvm_path=$P
             source "$P/scripts/rvm"
             ;;
+        cabal|haskell)
+            PATH=$HOME/.cabal/bin/:$PATH:$PWD/.cabal-sandbox/bin/
+            ;;
         *)
             echo "No such package"
             return 127
