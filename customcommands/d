@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+cmd=$1
+shift 1
+
+if [[ -z "$cmd" ]]
+then
+    exec docker
+elif which "docker-$cmd" 2> /dev/null > /dev/null
+then
+    "docker-$cmd" "$@"
+else
+    exec docker "$cmd" "$@"
+fi
