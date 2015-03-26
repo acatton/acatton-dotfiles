@@ -8,7 +8,7 @@ then
     exec docker
 elif which "docker-$cmd" 2> /dev/null > /dev/null
 then
-    "docker-$cmd" "$@"
+    exec "docker-$cmd" "$@"
 else
     exec docker "$cmd" "$@"
 fi
