@@ -46,7 +46,13 @@ do
         name=$(basename "$cursor")
         venv="${cursor}/.${name}"
         create_venv "$venv"
-        echo "/.${name}" >> "${cursor}/.git/info/exclude"
+
+        ignore_line="/.${name}"
+        ignore_file="${cursor}/.git/info/exclude"
+        if ! grep "$ignore_line" "$ignore_file" > /dev/null 2> /dev/null
+        then
+            echo "$ignore_line" >> "$ignore_file"
+        fi
         exit 0
     fi
     cursor=$(dirname "$cursor")
