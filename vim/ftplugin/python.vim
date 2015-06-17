@@ -5,4 +5,4 @@ setlocal smarttab
 setlocal expandtab
 
 " Show the columun limit
-set colorcolumn=80
+set colorcolumn=100
