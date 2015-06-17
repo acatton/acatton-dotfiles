@@ -10,7 +10,11 @@ bindkey -M vicmd "${terminfo[kbs]}" vi-backward-delete-char
 bindkey "${terminfo[kbs]}"  backward-delete-char
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
-bindkey -M vicmd "${terminfo[kend]}" vi-end-of-line
-bindkey -M vicmd "${terminfo[khome]}" vi-beginning-of-line
-bindkey "${terminfo[kend]}" end-of-line
-bindkey "${terminfo[khome]}" beginning-of-line
+bindkey -M vicmd '^A' vi-beginning-of-line
+bindkey -M vicmd '^E' vi-end-of-line
+bindkey -M vicmd "${terminfo[home]}" vi-beginning-of-line
+bindkey "${terminfo[home]}" beginning-of-line
+
+# $terminfo sucks and doesn't contains these lines
+bindkey -M vicmd '[F' vi-end-of-line
+bindkey '[F' end-of-line
