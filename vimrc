@@ -1,6 +1,8 @@
 " Avoid using vim
 set nocompatible
 
+colorscheme default
+
 " Bepo layout remap
 source ~/.vimrc_bepo_remap
 
