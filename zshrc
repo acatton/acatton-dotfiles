@@ -75,6 +75,14 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
+# cd history
+DIRSTACKSIZE=20
+setopt autopushd pushdsilent pushdtohome
+## Remove duplicate entries
+setopt pushdignoredups
+## This reverts the +/- operators.
+setopt pushdminus
+
 # Custom aliases
 source ~/.zshrc_aliases
 # Homemade functions
