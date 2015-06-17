@@ -36,7 +36,7 @@ export PAGER="most"
 export GIT_PAGER="less"
 export VISUAL="vimx"
 
-export PATH="${PATH}:${HOME}/.customcommands/"
+export PATH="${PATH}:${HOME}/.customcommands/:${HOME}/.bin/"
 
 #############
 # VIM MODE
