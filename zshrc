@@ -83,6 +83,9 @@ setopt pushdignoredups
 ## This reverts the +/- operators.
 setopt pushdminus
 
+# No duplicate line in the history
+setopt HIST_IGNORE_DUPS
+
 # Custom aliases
 source ~/.zshrc_aliases
 # Homemade functions
