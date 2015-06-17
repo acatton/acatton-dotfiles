@@ -22,6 +22,7 @@
 
 [alias]
   ci = commit
+  branches = branch -av
 
 [pull]
   rebase = true
