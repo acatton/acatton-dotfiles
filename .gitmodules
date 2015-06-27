@@ -49,3 +49,6 @@
 [submodule "vim/bundle/elm"]
 	path = vim/bundle/elm
 	url = https://github.com/lambdatoast/elm.vim.git
+[submodule "vim/bundle/incsearch.vim"]
+	path = vim/bundle/incsearch.vim/
+	url = git://github.com/haya14busa/incsearch.vim

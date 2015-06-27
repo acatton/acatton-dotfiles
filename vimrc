@@ -97,3 +97,7 @@ let g:CommandTAcceptSelectionSplitMap=['<C-g>']
 
 " Remove trailing spaces
 autocmd BufWritePre *.{py,c,cpp,ml,rb,hs} :%s/\s\+$//e
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
