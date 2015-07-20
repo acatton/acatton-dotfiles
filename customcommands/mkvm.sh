@@ -1,5 +1,13 @@
 #!/usr/bin/sh
 
+set -e
+
+if [ -z "$1" ]
+then
+    echo "Need a name"
+    exit 127
+fi
+
 virt-install --name="$1" --arch=x86_64 --vcpus= maxvcpus=3,vcpus=1 \
              --memory maxmemory=1537,memory=512 --os-type=linux --os-variant=debian8 \
              --cdrom=/var/lib/libvirt/images/debian.iso \
