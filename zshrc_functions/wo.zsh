@@ -3,7 +3,7 @@ wo()
     cursor="$PWD"
     until [ "$cursor" = "/" ]
     do
-        f=$(print "${cursor}/".*/bin/activate) 2> /dev/null
+        f=$(print "${cursor}/".(^deployment_virtualenv)/bin/activate) 2> /dev/null
         if [ -f "$f"  ]
         then
             source "$f"
