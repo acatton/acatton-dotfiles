@@ -90,3 +90,5 @@ setopt HIST_IGNORE_DUPS
 source ~/.zshrc_aliases
 # Homemade functions
 for i in ~/.zshrc_functions/*; source $i
+
+WERKZEUG_DEBUG_PIN=off
