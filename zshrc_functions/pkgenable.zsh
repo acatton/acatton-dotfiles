@@ -21,6 +21,9 @@ pkgenable() {
         cabal|haskell)
             PATH=$HOME/.cabal/bin/:$PATH:$PWD/.cabal-sandbox/bin/
             ;;
+        otp|erlang|rebar)
+            export PATH="$HOME/.pkgs/erlang/bin:$PATH"
+            ;;
         *)
             echo "No such package"
             return 127
