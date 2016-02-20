@@ -21,3 +21,4 @@ alias vi="vimx"
 alias pm="python manage.py"
 
 alias plm="mplayer -loop 0 -novideo"
+alias playdir="mplayer -loop 0 -shuffle -playlist <(find \$PWD)"
