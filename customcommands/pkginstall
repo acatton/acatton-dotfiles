@@ -44,7 +44,7 @@ case $1 in
             set -e
             export PATH="$DEST/bin/:$PATH"
             cd $(mktemp -d)
-            curl "https://github.com/rebar/rebar/archive/2.6.1.tar.gz" -o rebar.tar.gz
+            curl -L "https://github.com/rebar/rebar/archive/2.6.1.tar.gz" -o rebar.tar.gz
             echo "7f9b799c5dfa06d1779d828c767be2732dacc411  rebar.tar.gz" | sha1sum -c
             mkdir -p rebar
             tar -x --strip-components=1 -f rebar.tar.gz -C rebar
