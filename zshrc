@@ -36,7 +36,7 @@ export PAGER="most"
 export GIT_PAGER="less"
 export VISUAL="vimx"
 
-export PATH="${PATH}:${HOME}/.customcommands/:${HOME}/.bin/"
+export PATH="${PATH}:${HOME}/.customcommands/:${HOME}/.bin/:${HOME}/.local/bin"
 
 #############
 # VIM MODE
@@ -92,3 +92,5 @@ source ~/.zshrc_aliases
 for i in ~/.zshrc_functions/*; source $i
 
 WERKZEUG_DEBUG_PIN=off
+
+export PYTHONSTARTUP=~/.pystartup
