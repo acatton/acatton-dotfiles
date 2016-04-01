@@ -31,10 +31,12 @@ case $1 in
         (
             set -e
             cd $(mktemp -d)
-            curl -L "http://erlang.org/download/otp_src_18.2.1.tar.gz" -o erlang.tar.gz
-            echo "4397f29801fd430ef7e9ff03ea814807bf954e20  erlang.tar.gz" | sha1sum -c
+            SHA1="4397f29801fd430ef7e9ff03ea814807bf954e20"
+            CACHE="/tmp/${SHA1}.tar.gz"
+            test -f "$CACHE" || curl -L "http://erlang.org/download/otp_src_18.2.1.tar.gz" -o "$CACHE"
+            echo "4397f29801fd430ef7e9ff03ea814807bf954e20  $CACHE" | sha1sum -c
             mkdir -p erlang
-            tar -x --strip-components=1 -f erlang.tar.gz -C erlang
+            tar -x --strip-components=1 -f "$CACHE" -C erlang
             cd erlang
             ./configure --prefix="$DEST"
             make -j4 all install
