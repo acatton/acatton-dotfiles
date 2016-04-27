@@ -70,6 +70,10 @@ case $1 in
             make -j4 all install
         )
         ;;
+    cabal|haskell)
+        # See <https://github.com/haskell/cabal/issues/3003#issuecomment-167577489>
+        cabal install --upgrade cabal-install --constraint 'binary < 0.8'
+        ;;
     *)
         echo "Pkgs unknown"
         exit 127
