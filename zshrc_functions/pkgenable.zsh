@@ -24,6 +24,9 @@ pkgenable() {
         otp|erlang|rebar)
             export PATH="$HOME/.pkgs/erlang/bin:$PATH"
             ;;
+        npm|node)
+            export PATH="$HOME/.pkgs/node/bin:$PATH"
+            ;;
         *)
             echo "No such package"
             return 127

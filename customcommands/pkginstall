@@ -55,6 +55,21 @@ case $1 in
             mv ./rebar "$DEST/bin/"
         )
         ;;
+    npm|node)
+        DEST="$PKG_DIR/node"
+        mkdir "$DEST"
+        (
+            set -e
+            cd $(mktemp -d)
+            SHA256="083766aff72fc5c78f6999dd0d00bc0340a052ab270fd60d6928b719ca2b3fd1"
+            CACHE="/tmp/${SHA256}.tar.xz"
+            test -f "$CACHE" || curl "https://nodejs.org/dist/v5.11.0/node-v5.11.0.tar.xz" -o "$CACHE"
+            echo "${SHA256}  $CACHE" | sha256sum -c
+            tar -x --strip-components=1 -f "$CACHE"
+            ./configure --prefix="$DEST"
+            make -j4 all install
+        )
+        ;;
     *)
         echo "Pkgs unknown"
         exit 127
