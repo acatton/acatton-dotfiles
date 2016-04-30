@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+set -e
+
+export PATH="$HOME/.local/bin/:$PATH"
+
 usage()
 {
     echo "Usage: $0 [-p <interpreter>] [directory]" > /dev/stderr
