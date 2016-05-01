@@ -35,9 +35,7 @@ case $1 in
             CACHE="/tmp/${SHA1}.tar.gz"
             test -f "$CACHE" || curl -L "http://erlang.org/download/otp_src_18.2.1.tar.gz" -o "$CACHE"
             echo "${SHA1}  $CACHE" | sha1sum -c
-            mkdir -p erlang
-            tar -x --strip-components=1 -f "$CACHE" -C erlang
-            cd erlang
+            tar -x --strip-components=1 -f "$CACHE"
             ./configure --prefix="$DEST"
             make -j4 all install
         )
@@ -48,9 +46,7 @@ case $1 in
             cd $(mktemp -d)
             curl -L "https://github.com/rebar/rebar/archive/2.6.1.tar.gz" -o rebar.tar.gz
             echo "7f9b799c5dfa06d1779d828c767be2732dacc411  rebar.tar.gz" | sha1sum -c
-            mkdir -p rebar
-            tar -x --strip-components=1 -f rebar.tar.gz -C rebar
-            cd rebar
+            tar -x --strip-components=1 -f rebar.tar.gz
             ./bootstrap
             mv ./rebar "$DEST/bin/"
         )
