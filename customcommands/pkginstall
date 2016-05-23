@@ -67,8 +67,32 @@ case $1 in
         )
         ;;
     cabal|haskell)
-        # See <https://github.com/haskell/cabal/issues/3003#issuecomment-167577489>
-        cabal install --upgrade cabal-install --constraint 'binary < 0.8'
+        DEST="$PKG_DIR/haskell"
+        mkdir "$DEST"
+        # Install ghc
+        (
+            set -e
+            cd $(mktemp -d)
+            SHA256="804c75c4635353bf987c1ca120b8531c7bb4957c5b84d29c7adc4894b6fd579d"
+            CACHE="/tmp/${SHA256}.tar.xz"
+            test -f "$CACHE" || curl "http://downloads.haskell.org/~ghc/7.10.3/ghc-7.10.3b-x86_64-deb8-linux.tar.xz" -o "$CACHE"
+            echo "${SHA256}  $CACHE" | sha256sum -c
+            tar -x --strip-components=1 -f "$CACHE"
+            ./configure --prefix="$DEST"
+            make -j4 install
+        )
+        export PATH="$DEST/bin/:$PATH"
+        # Install cabal
+        (
+            set -e
+            cd $(mktemp -d)
+            SHA256="d840ecfd0a95a96e956b57fb2f3e9c81d9fc160e1fd0ea350b0d37d169d9e87e"
+            CACHE="/tmp/${SHA256}.tar.gz"
+            test -f "$CACHE" || curl "https://www.haskell.org/cabal/release/cabal-install-1.24.0.0/cabal-install-1.24.0.0.tar.gz" -o "$CACHE"
+            echo "${SHA256} $CACHE" | sha256sum -c
+            tar -x --strip-components=1 -f "$CACHE"
+            ./bootstrap.sh --no-doc
+        )
         ;;
     *)
         echo "Pkgs unknown"
