@@ -73,9 +73,9 @@ case $1 in
         (
             set -e
             cd $(mktemp -d)
-            SHA256="804c75c4635353bf987c1ca120b8531c7bb4957c5b84d29c7adc4894b6fd579d"
+            SHA256="b1c06af49b29521d5b122ef3311f5843e342db8b1769ea7c602cc16d66098ced"
             CACHE="/tmp/${SHA256}.tar.xz"
-            test -f "$CACHE" || curl "http://downloads.haskell.org/~ghc/7.10.3/ghc-7.10.3b-x86_64-deb8-linux.tar.xz" -o "$CACHE"
+            test -f "$CACHE" || curl "http://downloads.haskell.org/~ghc/8.0.1/ghc-8.0.1-x86_64-deb8-linux.tar.xz" -o "$CACHE"
             echo "${SHA256}  $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./configure --prefix="$DEST"
