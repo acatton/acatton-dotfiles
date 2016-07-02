@@ -23,10 +23,10 @@ pkgenable() {
             PATH="$PKGS_PATH/haskell/bin:$HOME/.cabal/bin/:$PATH:$PWD/.cabal-sandbox/bin/"
             ;;
         otp|erlang|rebar)
-            export PATH="$HOME/.pkgs/erlang/bin:$PATH"
+            export PATH="$PKGS_PATH/erlang/bin:$PATH"
             ;;
         npm|node)
-            export PATH="$HOME/.pkgs/node/bin:$PATH"
+            export PATH="$PKGS_PATH/node/bin:$PATH"
             ;;
         *)
             echo "No such package"
