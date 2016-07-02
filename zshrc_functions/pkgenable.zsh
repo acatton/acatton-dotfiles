@@ -6,6 +6,7 @@ pkgenable() {
     case $1 in
         rust|cargo)
             P="$PKGS_PATH/rust/"
+            RUSTUP_HOME="$P/rustup/"
             export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$P/lib/"
             export PATH="$PATH:$P/bin/"
             ;;

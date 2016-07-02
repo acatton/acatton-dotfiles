@@ -12,8 +12,10 @@ mkdir -p "$PKG_DIR"
 case $1 in
     rust|cargo)
         DEST="$PKG_DIR/rust/"
+        export RUSTUP_HOME="$DEST/rustup"
+        export RUSTUP_PREFIX="$DEST"
         mkdir -p "$DEST"
-        curl https://static.rust-lang.org/rustup.sh | bash -s -- --prefix="$DEST" --disable-sudo
+        curl https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --disable-ldconfig
         ;;
     ocaml|opam)
         DEST="$PKG_DIR/ocaml/"
