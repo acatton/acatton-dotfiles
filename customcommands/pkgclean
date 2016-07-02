@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+PKG_DIR="$HOME/.pkgs/"
+
+case "$1" in
+    rust|cargo)
+        rm "$PKG_DIR/rust" "$HOME/.cargo" -rf
+        ;;
+    haskell|cabal)
+        rm "$PKG_DIR/haskell" "$HOME/.cabal" "$HOME/.stack" -rf
+        ;;
+    *)
+        echo "Pkg unknown"
+        exit 127
+esac
