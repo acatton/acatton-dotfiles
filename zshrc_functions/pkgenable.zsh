@@ -6,9 +6,10 @@ pkgenable() {
     case $1 in
         rust|cargo)
             P="$PKGS_PATH/rust/"
-            RUSTUP_HOME="$P/rustup/"
+            export RUSTUP_HOME="$P/rustup/"
+            export CARGO_HOME="$P/cargo/"
             export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$P/lib/"
-            export PATH="$PATH:$P/bin/"
+            export PATH="$PATH:$P/bin/:$CARGO_HOME/bin"
             ;;
         ocaml|opam)
             P=$(ls -1 "$PKGS_PATH"/ocaml/*/etc/ocamlbrew.bashrc | sort -r | head -n 1)
