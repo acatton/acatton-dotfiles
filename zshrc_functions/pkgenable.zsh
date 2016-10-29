@@ -28,6 +28,9 @@ pkgenable() {
         npm|node)
             export PATH="$PKGS_PATH/node/bin:$PATH"
             ;;
+        nodemodules|npmmodules|localnode)
+            export PATH="$PWD/node_modules/.bin:$PATH"
+            ;;
         *)
             echo "No such package"
             return 127
