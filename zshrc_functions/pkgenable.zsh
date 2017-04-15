@@ -32,6 +32,9 @@ pkgenable() {
         nodemodules|npmmodules|localnode)
             export PATH="$PWD/node_modules/.bin:$PATH"
             ;;
+        scala|sbt)
+            export PATH="$PKGS_PATH/scala/bin:$PATH"
+            ;;
         *)
             echo "No such package"
             return 127
