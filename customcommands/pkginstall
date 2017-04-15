@@ -78,9 +78,9 @@ case $1 in
         (
             set -e
             cd $(mktemp -d)
-            SHA256="b1c06af49b29521d5b122ef3311f5843e342db8b1769ea7c602cc16d66098ced"
+            SHA256="5ee68290db00ca0b79d57bc3a5bdce470de9ce9da0b098a7ce6c504605856c8f"
             CACHE="/tmp/${SHA256}.tar.xz"
-            test -f "$CACHE" || curl "http://downloads.haskell.org/~ghc/8.0.1/ghc-8.0.1-x86_64-deb8-linux.tar.xz" -o "$CACHE"
+            test -f "$CACHE" || curl "http://downloads.haskell.org/~ghc/8.0.2/ghc-8.0.2-x86_64-deb8-linux.tar.xz" -o "$CACHE"
             echo "${SHA256}  $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./configure --prefix="$DEST"
@@ -91,9 +91,9 @@ case $1 in
         (
             set -e
             cd $(mktemp -d)
-            SHA256="d840ecfd0a95a96e956b57fb2f3e9c81d9fc160e1fd0ea350b0d37d169d9e87e"
+            SHA256="2ac8819238a0e57fff9c3c857e97b8705b1b5fef2e46cd2829e85d96e2a00fe0"
             CACHE="/tmp/${SHA256}.tar.gz"
-            test -f "$CACHE" || curl "https://www.haskell.org/cabal/release/cabal-install-1.24.0.0/cabal-install-1.24.0.0.tar.gz" -o "$CACHE"
+            test -f "$CACHE" || curl "https://www.haskell.org/cabal/release/cabal-install-1.24.0.2/cabal-install-1.24.0.2.tar.gz" -o "$CACHE"
             echo "${SHA256} $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./bootstrap.sh --no-doc
