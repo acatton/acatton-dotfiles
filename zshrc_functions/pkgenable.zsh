@@ -32,6 +32,9 @@ pkgenable() {
         nodemodules|npmmodules|localnode)
             export PATH="$PWD/node_modules/.bin:$PATH"
             ;;
+        phantom|phantomjs)
+            export PATH="$PATH:$PKGS_PATH/phantomjs/bin/"
+            ;;
         scala|sbt)
             export PATH="$PKGS_PATH/scala/bin:$PATH"
             ;;
