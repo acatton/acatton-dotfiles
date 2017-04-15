@@ -5,7 +5,7 @@
 # wouldn't worked
 set -e 
 
-PKG_DIR="$HOME/.pkgs/"
+PKG_DIR="$HOME/.pkgs"
 
 mkdir -p "$PKG_DIR"
 
