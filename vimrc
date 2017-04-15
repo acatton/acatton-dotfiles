@@ -9,8 +9,6 @@ source ~/.vimrc_bepo_remap
 
 " Highlight search result
 set hls
-" and clean the hilighting with :C
-command C let @/ = ""
 
 set autoindent
 set tabstop=4 softtabstop=4 shiftwidth=4
