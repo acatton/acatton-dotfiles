@@ -34,10 +34,10 @@ case $1 in
         (
             set -e
             cd $(mktemp -d)
-            SHA1="4397f29801fd430ef7e9ff03ea814807bf954e20"
-            CACHE="/tmp/${SHA1}.tar.gz"
-            test -f "$CACHE" || curl -L "http://erlang.org/download/otp_src_18.2.1.tar.gz" -o "$CACHE"
-            echo "${SHA1}  $CACHE" | sha1sum -c
+            MD5="19dfbc2042e6dd40bf281e7ca2d49d43"
+            CACHE="/tmp/${MD5}.tar.gz"
+            test -f "$CACHE" || curl -L "http://www.erlang.org/download/otp_src_19.1.tar.gz" -o "$CACHE"
+            echo "${MD5}  $CACHE" | md5sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./configure --prefix="$DEST"
             make -j4 all install
@@ -47,11 +47,13 @@ case $1 in
             set -e
             export PATH="$DEST/bin/:$PATH"
             cd $(mktemp -d)
-            curl -L "https://github.com/rebar/rebar/archive/2.6.1.tar.gz" -o rebar.tar.gz
-            echo "7f9b799c5dfa06d1779d828c767be2732dacc411  rebar.tar.gz" | sha1sum -c
-            tar -x --strip-components=1 -f rebar.tar.gz
+            SHA256="ccbc27355727090b1fdde7497ab2485c3509e2fd14b48a93276b285b5760d092"
+            CACHE="/tmp/${SHA256}.tar.gz"
+            test -f "$CACHE" || curl -L "https://github.com/erlang/rebar3/archive/3.3.2.tar.gz" -o "$CACHE"
+            echo "${SHA256} $CACHE" | sha256sum -c
+            tar -x --strip-components=1 -f "$CACHE"
             ./bootstrap
-            mv ./rebar "$DEST/bin/"
+            mv "./_build/default/bin/rebar3" "$DEST/bin/"
         )
         ;;
     npm|node)
