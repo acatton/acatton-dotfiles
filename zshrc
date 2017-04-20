@@ -36,6 +36,8 @@ export PAGER="most"
 export GIT_PAGER="less"
 export VISUAL="vimx"
 
+# Avoid having global files telling me where binaries are
+PATH="/usr/lib64/ccache:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export PATH="${PATH}:${HOME}/.customcommands/:${HOME}/.bin/:${HOME}/.local/bin"
 
 #############
