@@ -8,4 +8,4 @@ setlocal textwidth=100
 " Show the columun limit
 set colorcolumn=100
 
-ab pdbst import pdb; pdb.set_trace()
+iabbrev <buffer> pdbst import pdb; pdb.set_trace()
