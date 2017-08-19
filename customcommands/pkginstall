@@ -3,7 +3,7 @@
 # Shebang only accept one argument.
 #    #!/usr/bin/env bash -e
 # wouldn't worked
-set -e 
+set -euo pipefail
 
 PKG_DIR="$HOME/.pkgs"
 
@@ -32,24 +32,24 @@ case $1 in
         mkdir "$DEST"
         # Install erlang itself
         (
-            set -e
+            set -euo pipefail
             cd $(mktemp -d)
-            MD5="19dfbc2042e6dd40bf281e7ca2d49d43"
-            CACHE="/tmp/${MD5}.tar.gz"
-            test -f "$CACHE" || curl -L "http://www.erlang.org/download/otp_src_19.1.tar.gz" -o "$CACHE"
-            echo "${MD5}  $CACHE" | md5sum -c
+            SHA256="fe80e1e14a2772901be717694bb30ac4e9a07eee0cc7a28988724cbd21476811"
+            CACHE="/tmp/${SHA256}.tar.gz"
+            test -f "$CACHE" || curl -L "http://www.erlang.org/download/otp_src_20.0.tar.gz" -o "$CACHE"
+            echo "${SHA256}  $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./configure --prefix="$DEST"
             make -j4 all install
         )
         # Install rebar
         (
-            set -e
+            set -euo pipefail
             export PATH="$DEST/bin/:$PATH"
             cd $(mktemp -d)
-            SHA256="ccbc27355727090b1fdde7497ab2485c3509e2fd14b48a93276b285b5760d092"
+            SHA256="f4d38d01671af6a7eb4777654d1543b42c873dad32046e444434c64d929fc789"
             CACHE="/tmp/${SHA256}.tar.gz"
-            test -f "$CACHE" || curl -L "https://github.com/erlang/rebar3/archive/3.3.2.tar.gz" -o "$CACHE"
+            test -f "$CACHE" || curl -L "https://github.com/erlang/rebar3/archive/3.4.2.tar.gz" -o "$CACHE"
             echo "${SHA256} $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./bootstrap
@@ -60,7 +60,7 @@ case $1 in
         DEST="$PKG_DIR/node"
         mkdir "$DEST"
         (
-            set -e
+            set -euo pipefail
             cd $(mktemp -d)
             SHA256="f65d5d4b7253ee29f3ba4edabd3473845075e43569bceea4267e7bf3e00ebb96"
             CACHE="/tmp/${SHA256}.tar.xz"
@@ -76,7 +76,7 @@ case $1 in
         mkdir "$DEST"
         # Install ghc
         (
-            set -e
+            set -euo pipefail
             cd $(mktemp -d)
             SHA256="5ee68290db00ca0b79d57bc3a5bdce470de9ce9da0b098a7ce6c504605856c8f"
             CACHE="/tmp/${SHA256}.tar.xz"
@@ -89,7 +89,7 @@ case $1 in
         export PATH="$DEST/bin/:$PATH"
         # Install cabal
         (
-            set -e
+            set -euo pipefail
             cd $(mktemp -d)
             SHA256="2ac8819238a0e57fff9c3c857e97b8705b1b5fef2e46cd2829e85d96e2a00fe0"
             CACHE="/tmp/${SHA256}.tar.gz"
@@ -103,7 +103,7 @@ case $1 in
         DEST="$PKG_DIR/phantomjs"
         mkdir "$DEST"
         (
-            set -e
+            set -euo pipefail
             cd $(mktemp -d)
             SHA256="86dd9a4bf4aee45f1a84c9f61cf1947c1d6dce9b9e8d2a907105da7852460d2f"
             CACHE="/tmp/${SHA256}.tar.bz2"
@@ -120,7 +120,7 @@ case $1 in
         OPTIONS="-Dsbt.global.base='$SBT_HOME' -Dsbt.ivy.home='$IVY_HOME' -Dsbt.boot.directory='$SBT_HOME/boot'"
         mkdir "$DEST" "$SBT_DIR" "$SBT_HOME" "$IVY_HOME"
         (
-            set -e
+            set -euo pipefail
             cd $(mktemp -d)
             SHA256="b6e073d7c201741dcca92cfdd1dd3cd76c42a47dc9d8c8ead8df7117deed7aef"
             CACHE="/tmp/${SHA256}.tgz"
