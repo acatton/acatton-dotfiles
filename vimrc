@@ -34,7 +34,7 @@ set laststatus=2
 set wildmode=list:longest,full " file completion à la ZSH
 set wildmenu
 set wildignore=*.pyc,*.pyo,*.o
-let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*,**/node_modules/*,target,project/target"
+let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*,**/node_modules/*,target,project/target,deps,ebin,_rel"
 
 set so=7
 
