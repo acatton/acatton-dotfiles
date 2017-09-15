@@ -31,9 +31,6 @@
 [submodule "vim/bundle/rust"]
 	path = vim/bundle/rust
 	url = https://github.com/wting/rust.vim
-[submodule "vim/bundle/ropevim"]
-	path = vim/bundle/ropevim
-	url = git://github.com/python-rope/ropevim.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
