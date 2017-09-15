@@ -16,5 +16,5 @@ bindkey -M vicmd "${terminfo[home]}" vi-beginning-of-line
 bindkey "${terminfo[home]}" beginning-of-line
 
 # $terminfo sucks and doesn't contains these lines
-bindkey -M vicmd '[F' vi-end-of-line
-bindkey '[F' end-of-line
+bindkey -M vicmd '\e[F' vi-end-of-line
+bindkey '\e[F' end-of-line
