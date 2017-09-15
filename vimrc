@@ -80,7 +80,7 @@ let mapleader=','
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_fuzzy_completion = 1
 
-let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers=['flake8', 'python']
 let g:syntastic_enable_signs=0
 
 let g:syntastic_cpp_compiler_options = ' -std=c++14'
