@@ -46,15 +46,15 @@ let vala_comment_strings = 1
 
 " Omni completion
 imap <Nul> <C-x><C-o>
-autocmd FileType html        set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css         set omnifunc=csscomplete#CompleteCSS
-autocmd FileType javascript  set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType c           set omnifunc=ccomplete#Complete
-autocmd FileType php         set omnifunc=phpcomplete#CompletePHP
-autocmd FileType ruby        set omnifunc=rubycomplete#Complete
-autocmd FileType sql         set omnifunc=sqlcomplete#Complete
-autocmd FileType python      set omnifunc=pythoncomplete#Complete
-autocmd FileType xml         set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType html        setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css         setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType javascript  setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType c           setlocal omnifunc=ccomplete#Complete
+autocmd FileType php         setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType ruby        setlocal omnifunc=rubycomplete#Complete
+autocmd FileType sql         setlocal omnifunc=sqlcomplete#Complete
+autocmd FileType python      setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml         setlocal omnifunc=xmlcomplete#CompleteTags
 set completeopt=menu,longest
 
 " special highlights
