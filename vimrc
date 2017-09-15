@@ -44,6 +44,11 @@ set incsearch " Search à la firefox (search while typing)
 " Vala highlighting
 let vala_comment_strings = 1
 
+" Remove impolite jedi
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+
 " Omni completion
 imap <Nul> <C-x><C-o>
 autocmd FileType html        setlocal omnifunc=htmlcomplete#CompleteTags
@@ -56,6 +61,12 @@ autocmd FileType sql         setlocal omnifunc=sqlcomplete#Complete
 autocmd FileType python      setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml         setlocal omnifunc=xmlcomplete#CompleteTags
 set completeopt=menu,longest
+
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 
 " special highlights
 let python_highlight_all=1 " Highlight everyting in python (especially trailing spaces)
