@@ -96,3 +96,6 @@ for i in ~/.zshrc_functions/*; source $i
 WERKZEUG_DEBUG_PIN=off
 
 export PYTHONSTARTUP=~/.pystartup
+
+# fzf completion
+source ~/.zsh/fzf-key-bindings.zsh
