@@ -18,3 +18,5 @@ bindkey "${terminfo[home]}" beginning-of-line
 # $terminfo sucks and doesn't contains these lines
 bindkey -M vicmd '\e[F' vi-end-of-line
 bindkey '\e[F' end-of-line
+
+bindkey -M vicmd '^W' vi-backward-kill-word
