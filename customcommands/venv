@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -e
+set -eo pipefail
 
 export PATH="$HOME/.local/bin/:$PATH"
 
@@ -35,7 +35,7 @@ done
 
 shift $((OPTIND - 1))
 
-# Use current dir or the directory speci
+# Use current dir or the directory specified
 if [ "x${1}" = "x" ]
 then
     DST="$PWD"
@@ -43,26 +43,9 @@ else
     DST=$(readlink -f "$1")
 fi
 
-cursor="$DST"
-until [ "${cursor}" = "/" ]
-do
-    if [ -d "${cursor}/.git" ]
-    then
-        name=$(basename "$cursor")
-        venv="${cursor}/.${name}"
-        create_venv "$venv"
+REAL_DST="$( (cd "$DST" && git rev-parse --show-toplevel 2> /dev/null) || echo "$DST" )"
 
-        ignore_line="/.${name}"
-        ignore_file="${cursor}/.git/info/exclude"
-        if ! grep "$ignore_line" "$ignore_file" > /dev/null 2> /dev/null
-        then
-            echo "$ignore_line" >> "$ignore_file"
-        fi
-        exit 0
-    fi
-    cursor=$(dirname "$cursor")
-done
-
-name=$(basename "$DST")
-venv="${DST}/.${name}"
+name=$(basename "$REAL_DST")
+venv="${REAL_DST}/.${name}"
+[ -x "${REAL_DST}/.git" ] && (echo "/.${name}" >> "${REAL_DST}/.git/info/exclude")
 create_venv "$venv"
