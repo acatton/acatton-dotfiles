@@ -20,7 +20,7 @@ pkgenable() {
             export rvm_path=$P
             source "$P/scripts/rvm"
             ;;
-        cabal|haskell)
+        cabal|haskell|stack)
             PATH="$PKGS_PATH/haskell/bin:$HOME/.cabal/bin/:$PATH:$PWD/.cabal-sandbox/bin/"
             ;;
         otp|erlang|rebar)

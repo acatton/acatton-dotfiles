@@ -71,7 +71,7 @@ case $1 in
             make -j4 all install
         )
         ;;
-    cabal|haskell)
+    cabal|haskell|stack)
         DEST="$PKG_DIR/haskell"
         mkdir "$DEST"
         # Install ghc
