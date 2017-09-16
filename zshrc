@@ -98,4 +98,5 @@ WERKZEUG_DEBUG_PIN=off
 export PYTHONSTARTUP=~/.pystartup
 
 # fzf completion
+FZF_DEFAULT_OPTS='--color=bw'
 source ~/.zsh/fzf-key-bindings.zsh

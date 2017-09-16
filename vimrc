@@ -34,7 +34,6 @@ set laststatus=2
 set wildmode=list:longest,full " file completion à la ZSH
 set wildmenu
 set wildignore=*.pyc,*.pyo,*.o
-let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*,**/node_modules/*,target,project/target,deps,ebin,_rel"
 
 set so=7
 
@@ -103,11 +102,11 @@ let ropevim_vim_completion=1
 highlight UnderCursor ctermbg=153
 autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
-let g:CommandTAcceptSelectionSplitMap=['<C-g>']
-
 " Remove trailing spaces
 autocmd BufWritePre *.{py,c,cpp,ml,rb,hs} :%s/\s\+$//e
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
+noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
