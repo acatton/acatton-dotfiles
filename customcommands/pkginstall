@@ -62,9 +62,9 @@ case $1 in
         (
             set -euo pipefail
             cd $(mktemp -d)
-            SHA256="f65d5d4b7253ee29f3ba4edabd3473845075e43569bceea4267e7bf3e00ebb96"
+            SHA256="e1cde5d8e5049e7e1b61aef128f26162059d885dc8cab5014bf5cbf693f75c3c"
             CACHE="/tmp/${SHA256}.tar.xz"
-            test -f "$CACHE" || curl "https://nodejs.org/dist/v6.10.0/node-v6.10.0.tar.xz" -o "$CACHE"
+            test -f "$CACHE" || curl "https://nodejs.org/dist/v8.5.0/node-v8.5.0.tar.xz" -o "$CACHE"
             echo "${SHA256}  $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./configure --prefix="$DEST"
