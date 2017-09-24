@@ -6,6 +6,6 @@ setlocal expandtab
 setlocal textwidth=100
 
 " Show the columun limit
-set colorcolumn=100
+setlocal colorcolumn=100
 
 iabbrev <buffer> pdbst import pdb; pdb.set_trace()
