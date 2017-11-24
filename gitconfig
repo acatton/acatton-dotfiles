@@ -1,5 +1,6 @@
 [merge]
   ff = false
+  conflictStyle = diff3
 
 # Put this in ~/.gitconfig.d/identity
 #[user]
