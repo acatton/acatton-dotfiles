@@ -80,9 +80,6 @@ filetype plugin indent on
 " If you forgot to do sudoedit or sudo vi
 command SudoW !sudo tee % > /dev/null
 
-" pathogen
-call pathogen#infect()
-
 " Remap the leader key
 let mapleader=','
 
