@@ -1,45 +1,43 @@
-[submodule "vim/bundle/neocomplcache"]
-	path = vim/bundle/neocomplcache
-	url = https://github.com/Shougo/neocomplcache.vim
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree
-[submodule "vim/bundle/vala"]
-	path = vim/bundle/vala
-	url = https://github.com/tkztmk/vim-vala
-[submodule "vim/bundle/easymotion"]
-	path = vim/bundle/easymotion
-	url = https://github.com/Lokaltog/vim-easymotion
-[submodule "vim/pathogen"]
-	path = vim/pathogen
-	url = https://github.com/tpope/vim-pathogen
-[submodule "zsh/syntax-highlighting"]
-	path = zsh/syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "vim/bundle/vim-surround"]
-	path = vim/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/nerdcommenter"]
-	path = vim/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/rust"]
-	path = vim/bundle/rust
-	url = https://github.com/wting/rust.vim
-[submodule "vim/bundle/fugitive"]
-	path = vim/bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/elm"]
-	path = vim/bundle/elm
-	url = https://github.com/lambdatoast/elm.vim.git
-[submodule "vim/bundle/incsearch.vim"]
-	path = vim/bundle/incsearch.vim
-	url = git://github.com/haya14busa/incsearch.vim
-[submodule "vim/bundle/typescript"]
-	path = vim/bundle/typescript
-	url = git://github.com/leafgarland/typescript-vim
-[submodule "vim/bundle/jedi"]
-	path = vim/bundle/jedi
-	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "vim-plugin-codi"]
+    path = vim/pack/batteries/opt/codi
+    url = git@github.com:metakirby5/codi.vim.git
+
+[submodule "vim-plugin-easymotion"]
+    path = vim/pack/batteries/start/easymotion
+    url = git@github.com:easymotion/vim-easymotion.git
+
+[submodule "vim-plugin-elm"]
+    path = vim/pack/batteries/start/elm
+    url = git@github.com:lambdatoast/elm.vim.git
+
+[submodule "vim-plugin-fugitive"]
+    path = vim/pack/batteries/start/fugitive
+    url = git@github.com:tpope/vim-fugitive.git
+
+[submodule "vim-plugin-incsearch"]
+    path = vim/pack/batteries/start/incsearch
+    url = git@github.com:haya14busa/incsearch.vim.git
+
+[submodule "vim-plugin-nerdcommenter"]
+    path = vim/pack/batteries/start/nerdcommenter
+    url = git@github.com:scrooloose/nerdcommenter.git
+
+[submodule "vim-plugin-nerdtree"]
+    path = vim/pack/batteries/start/nerdtree
+    url = git@github.com:scrooloose/nerdtree.git
+
+[submodule "vim-plugin-rust"]
+    path = vim/pack/batteries/start/rust
+    url = git@github.com:rust-lang/rust.vim.git
+
+[submodule "vim-plugin-surround"]
+    path = vim/pack/batteries/start/surround
+    url = git@github.com:tpope/vim-surround.git
+
+[submodule "vim-plugin-vala"]
+    path = vim/pack/batteries/start/vala
+    url = git@github.com:arrufat/vala.vim.git
+
+[submodule "zsh-plugin-syntax-highlighter"]
+    path = zsh/syntax-highlighting
+    url = git@github.com:zsh-users/zsh-syntax-highlighting.git
