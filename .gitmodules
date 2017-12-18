@@ -1,6 +1,14 @@
+[submodule "vim-plugin-ale"]
+    path = vim/path/batteries/start/ale
+    url = git@github.com:w0rp/ale.git
+
 [submodule "vim-plugin-codi"]
     path = vim/pack/batteries/opt/codi
     url = git@github.com:metakirby5/codi.vim.git
+
+[submodule "vim-plugin-completor"]
+    path = vim/pack/batteries/opt/completor
+    url = git@github.com:maralla/completor.vim.git
 
 [submodule "vim-plugin-easymotion"]
     path = vim/pack/batteries/start/easymotion
@@ -17,6 +25,10 @@
 [submodule "vim-plugin-incsearch"]
     path = vim/pack/batteries/start/incsearch
     url = git@github.com:haya14busa/incsearch.vim.git
+
+[submodule "vim-plugin-lightline"]
+    path = vim/pack/batteries/start/lightline
+    url = git@github.com:itchyny/lightline.vim.git
 
 [submodule "vim-plugin-nerdcommenter"]
     path = vim/pack/batteries/start/nerdcommenter
