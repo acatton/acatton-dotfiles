@@ -32,6 +32,18 @@ function! s:warn(msg)
 endfunction
 
 
+" Shamelessly stolen from Python 3's shlex.quote()
+function! s:escape_single_arg(single_arg)
+  if a:single_arg =~ '^$'
+    return "''"
+  elseif a:single_arg =~ '^\w+$'
+    return a:single_arg
+  else
+    return "'" . substitute(a:single_arg, "'", "'\"'\"'", 'g') . "'"
+  endif
+endfunction
+
+
 " Escape a list of argument for shell execution.
 " This function protects against shell injection.
 "
@@ -40,14 +52,6 @@ endfunction
 " Will become:
 "   foo 'bar baz' '$qux'
 function! s:escape_args(many_args)
-  function! s:escape_single_arg(single_arg)
-    if a:single_arg =~ '^\w+$'
-      return a:single_arg
-    else
-      return "'" . substitute(a:single_arg, "'", "'" . '"' . "'" . '"' . "'", 'g') . "'"
-    endif
-  endfunction
-
   return join(map(a:many_args, 's:escape_single_arg(v:val)'))
 endfunction
 
@@ -58,7 +62,7 @@ endfunction
 "   ls -l 'some file'
 " You could consider that as the equivalent of: man 3 execv
 function! s:execute(executable, args)
-  execute 'silent !' . a:executable . ' ' . s:escape_args(a:args)
+  execute 'silent !' . s:escape_single_arg(a:executable) . ' ' . s:escape_args(a:args)
   redraw!
 endfunction
 
