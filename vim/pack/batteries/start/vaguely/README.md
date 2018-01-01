@@ -3,6 +3,9 @@ Vaguely
 
 Thin wrapper around `fzf`.
 
+Since I've never written a vim plugin before, many bits of the code are
+inspired or copy/pasted from the original `fzf.vim`.
+
 Name
 ----
 
