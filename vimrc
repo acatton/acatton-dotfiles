@@ -80,4 +80,5 @@ let g:ale_linters = {
 \}
 
 " FZF
-noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
+"noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
+nmap <C-T> <plug>VaguelyFiles
