@@ -1,5 +1,6 @@
 [merge]
   ff = false
+  conflictStyle = diff3
 
 # Put this in ~/.gitconfig.d/identity
 #[user]
@@ -29,3 +30,7 @@
 
 [gpg]
   program = gpg2
+
+[credential "https://git-codecommit.eu-central-1.amazonaws.com/"]
+  helper = "!aws codecommit credential-helper "
+  UseHttpPath = true
