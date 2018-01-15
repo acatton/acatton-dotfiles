@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+utils-docker-rm-all
+
+while (( $(sudo docker images --format 'foo' | wc -l) > 0 ))
+do
+    sudo docker images --no-trunc --format '{{.ID}}' | xargs sudo docker rmi --force
+done

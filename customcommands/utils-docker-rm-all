@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if (( $(sudo docker ps -a --format 'foo' | wc -l) > 0 ))
+then
+    # Remove all docker files
+    sudo docker ps -a --no-trunc --format '{{.ID}}' | xargs sudo docker rm --force
+fi
