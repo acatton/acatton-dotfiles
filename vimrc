@@ -2,15 +2,16 @@
 set nocompatible
 
 colorscheme default
+" Lightline
+set noshowmode
 
 " Bepo layout remap
 source ~/.vimrc_bepo_remap
 
-
 " Highlight search result
 set hls
 
-set autoindent
+set smartindent
 set tabstop=4 softtabstop=4 shiftwidth=4
 set expandtab
 
@@ -38,34 +39,14 @@ set wildignore=*.pyc,*.pyo,*.o
 set so=7
 
 set incsearch " Search à la firefox (search while typing)
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 
 " Vala highlighting
 let vala_comment_strings = 1
 
-" Remove impolite jedi
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-
-" Omni completion
-imap <Nul> <C-x><C-o>
-autocmd FileType html        setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css         setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType javascript  setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType c           setlocal omnifunc=ccomplete#Complete
-autocmd FileType php         setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType ruby        setlocal omnifunc=rubycomplete#Complete
-autocmd FileType sql         setlocal omnifunc=sqlcomplete#Complete
-autocmd FileType python      setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml         setlocal omnifunc=xmlcomplete#CompleteTags
-set completeopt=menu,longest
-
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 
 " special highlights
 let python_highlight_all=1 " Highlight everyting in python (especially trailing spaces)
@@ -80,24 +61,10 @@ filetype plugin indent on
 " If you forgot to do sudoedit or sudo vi
 command SudoW !sudo tee % > /dev/null
 
-" pathogen
-call pathogen#infect()
-
 " Remap the leader key
 let mapleader=','
 
-" neocomplcache configuration
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_fuzzy_completion = 1
-
-let g:syntastic_python_checkers=['flake8', 'python']
-let g:syntastic_enable_signs=0
-
-let g:syntastic_cpp_compiler_options = ' -std=c++14'
-
 set t_Co=256
-
-let ropevim_vim_completion=1
 
 highlight UnderCursor ctermbg=153
 autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
@@ -105,8 +72,13 @@ autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('
 " Remove trailing spaces
 autocmd BufWritePre *.{py,c,cpp,ml,rb,hs} :%s/\s\+$//e
 
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 
-noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
+" ALE highlighting
+let g:ale_set_signs = 0
+let g:ale_linters = {
+\  'python': ['pycodestyle', 'mypy'],
+\}
+
+" FZF
+"noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
+nmap <C-T> <plug>VaguelyFiles

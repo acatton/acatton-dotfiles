@@ -51,7 +51,7 @@ let NERDTreeMapRefresh='h'
 let NERDTreeMapRefreshRoot='H'
 
 " XXX: Source surround in order to unmap
-source ~/.vim/bundle/vim-surround/plugin/surround.vim
-nunmap cs
+let g:surround_no_mappings=1
 
 nmap ls  <Plug>Csurround
+nmap ds  <Plug>Dsurround
