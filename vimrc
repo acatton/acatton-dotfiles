@@ -79,6 +79,9 @@ let g:ale_linters = {
 \  'python': ['pycodestyle', 'mypy'],
 \}
 
+" Lightline
+let g:lightline = {'colorscheme': 'one'}
+
 " FZF
 "noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
 nmap <C-T> <plug>VaguelyFiles
