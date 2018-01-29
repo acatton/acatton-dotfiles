@@ -27,11 +27,13 @@ let g:vaguely_openers = get(g:, 'vaguely_openers',
 
 let g:vaguely_colorspec = get(g:, 'vaguely_colorspec', 'bw')
 
-let g:vaguely_height = get(g:, 'vaguely_height', '50%')
-
-
 let s:opener_to_command = {'edit': 'e', 'new tab': 'tabnew',
 \                          'vertical split': 'vsplit', 'horizontal split': 'split'}
+
+" This is horrible... This is because vim doesn't have closures and lambda
+" functions. We maintain the state of all jobs inside this variable, and we
+" clean it up every time we access.
+let s:job_state = {}
 
 
 " Shamelessly copy/pasted from the original fzf.vim
@@ -82,50 +84,29 @@ function! s:escape_vim(str)
 endfunction
 
 
-" Execute any executable with its arguments escaped.
-" For example:
-"   s:execv('ls', ['-l', 'some file'], {})
-" will run the shell command:
-"   ls -l 'some file'
-" You could consider that as the equivalent of: man 3 execv
-" The last parameter allows to specify an output, for example:
-"   s:execv('ls', ['-l', 'some file'], {'stdout': '/dev/null'})
-function! s:execv(executable, args, io)
-  let cmd =  s:escape_single_arg(a:executable) . ' ' . s:escape_args(a:args)
-
-  if has_key(a:io, 'stdout')
-    let cmd = cmd . ' > ' . s:escape_single_arg(a:io.stdout)
-  endif
-
-  if has_key(a:io, 'stderr')
-    let cmd = cmd . ' 2> ' . s:escape_single_arg(a:io.stderr)
-  endif
-
-  if has_key(a:io, 'stdin')
-    let cmd = cmd . ' < ' . s:escape_single_arg(a:io.stdin)
-  endif
-
+function! s:execv(executable, args)
+  let cmd = s:escape_args([a:executable] + [a:args])
   execute 'silent !' . s:escape_vim(cmd)
+  redraw!
 endfunction
 
 
-" Wraps execv and returns the output of the command.
-function! s:execute(executable, args, io)
+function! s:term_execv(executable, args, io)
+  let options = {'curwin': 1}
+
   if has_key(a:io, 'stdout')
-    throw 'execute() already captures stdout'
+    let options.out_io = 'file'
+    let options.out_name = a:io.stdout
   endif
 
-  let tmp = tempname()
-  try
-    let realio = copy(a:io)
-    let realio.stdout = tmp
+  if has_key(a:io, 'close_cb')
+    let options.exit_cb = a:io.close_cb
+  endif
 
-    call s:execv(a:executable, a:args, realio)
-
-    return filereadable(tmp) ? readfile(tmp) : []
-  finally
-    call delete(tmp)
-  endtry
+  let cmd =  s:escape_args([a:executable] + a:args)
+  let jobid = term_start([&shell, &shellcmdflag, cmd], options)
+  call term_wait(jobid, 20)
+  return jobid
 endfunction
 
 
@@ -141,9 +122,7 @@ function! vaguely#fzf(fzf_args, io) abort
     endif
   endif
 
-  let output = s:execute(s:executable, a:fzf_args, a:io)
-  redraw!
-  return output
+  return s:term_execv(s:executable, a:fzf_args, a:io)
 endfunction
 
 
@@ -153,7 +132,6 @@ function! s:command_args()
 
     call add(arguments, '--expect=' . join(keys(g:vaguely_openers), ','))
     call add(arguments, '--color=' . g:vaguely_colorspec)
-    call add(arguments, '--height=' . g:vaguely_height)
 
     return arguments
 endfunction
@@ -174,17 +152,29 @@ function! s:open_files(method, filenames)
 endfunction
 
 
+function vaguely#files_cb_close(closure, jobid, status)
+  execute 'keepalt b' . a:closure.buffer
+  let fname = a:closure.stdout
+  let lines = filereadable(fname) ? readfile(fname) : []
+  if len(lines) > 1
+    let method = lines[0]
+    let filenames = lines[1:]
+    call s:open_files(method, filenames)
+  endif
+endfunction
+
+
 function vaguely#files()
     let arguments = copy(s:command_args())
-    let to_open = vaguely#fzf(arguments, {})
 
-    if len(to_open) < 2
-      return
-    else
-      let method = to_open[0]
-      let filenames = to_open[1:]
-      call s:open_files(method, filenames)
-    endif
+    let tmpfile = tempname()
+    let closure = {'stdout': tmpfile, 'tmpfiles': [tmpfile], 'buffer': bufnr('')}
+
+    let options = {
+    \ 'stdout': tmpfile,
+    \ 'close_cb': function('vaguely#files_cb_close', [closure]),
+    \}
+    let jobid = vaguely#fzf(arguments, options)
 endfunction
 
 
