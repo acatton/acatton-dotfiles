@@ -79,6 +79,26 @@ let g:ale_linters = {
 \  'python': ['pycodestyle', 'mypy'],
 \}
 
+" Lightline
+let g:lightline = {
+\   'colorscheme': 'one',
+\   'active': {
+\       'left': [ [ 'mode', 'paste' ], [ 'charvaluehex', 'readonly', 'modified', 'filename' ] ],
+\       'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ],
+\   },
+\   'component': {
+\       'charvaluehex': '0x%04B',
+\   },
+\   'component_function': {
+\       'filename': 'LightlineFullFilename',
+\   }
+\}
+
+function! LightlineFullFilename()
+    let filename = expand('%')
+    return filename !=# '' ? filename : '[No Name]'
+endfunction
+
 " FZF
 "noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
 nmap <C-T> <plug>VaguelyFiles

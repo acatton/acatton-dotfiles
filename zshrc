@@ -71,7 +71,7 @@ precmd() {
     vcs_info
 }
 
-PROMPT=$'[%n@%m %~${vcs_info_msg_0_}]$ '
+PROMPT=$'[%n@%m %(5~|%-1~/…/%3~|%~)${vcs_info_msg_0_}]$ '
 
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
