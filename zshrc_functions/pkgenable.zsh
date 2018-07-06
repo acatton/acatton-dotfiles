@@ -21,7 +21,7 @@ pkgenable() {
             source "$P/scripts/rvm"
             ;;
         cabal|haskell|stack)
-            PATH="$PKGS_PATH/haskell/bin:$HOME/.cabal/bin/:$PATH:$PWD/.cabal-sandbox/bin/"
+            PATH="$PKGS_PATH/haskell/cabal/bin:$PKGS_PATH/haskell/ghc/bin:$PKGS_PATH/haskell/stack/bin:$PATH"
             ;;
         otp|erlang|rebar)
             export PATH="$PKGS_PATH/erlang/bin:$PATH"
@@ -37,6 +37,9 @@ pkgenable() {
             ;;
         scala|sbt)
             export PATH="$PKGS_PATH/scala/bin:$PATH"
+            ;;
+        idris)
+            export PATH="$PKGS_PATH/idris/bin:$PATH"
             ;;
         *)
             echo "No such package"

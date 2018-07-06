@@ -73,33 +73,65 @@ case $1 in
         ;;
     cabal|haskell|stack)
         DEST="$PKG_DIR/haskell"
+        GHC_PREFIX="$DEST/ghc"
+        CABAL_PREFIX="$DEST/cabal"
+        STACK_PREFIX="$DEST/stack"
+
         mkdir "$DEST"
         # Install ghc
         (
             set -euo pipefail
-            cd $(mktemp -d)
-            SHA256="48e205c62b9dc1ccf6739a4bc15a71e56dde2f891a9d786a1b115f0286111b2a"
+            cd "$(mktemp -d)"
+            SHA256="30a402c6d4754a6c020e0547f19ae3ac42e907e35349aa932d347f73e421a8e2"
             CACHE="/tmp/${SHA256}.tar.xz"
-            test -f "$CACHE" || curl "https://downloads.haskell.org/~ghc/8.2.2/ghc-8.2.2-x86_64-deb8-linux.tar.xz" -o "$CACHE"
+            test -f "$CACHE" || curl "https://downloads.haskell.org/~ghc/8.4.3/ghc-8.4.3-x86_64-deb8-linux.tar.xz" -o "$CACHE"
             echo "${SHA256}  $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
-            ./configure --prefix="$DEST"
+            ./configure --prefix="$GHC_PREFIX"
             make -j4 install
         )
-        export PATH="$DEST/bin/:$PATH"
+
         # Install cabal
         (
             set -euo pipefail
-            cd $(mktemp -d)
-            SHA256="f991e36f3adaa1c7e2f0c422a2f2a4ab21b7041c82a8896f72afc9843a0d5d99"
+            cd "$(mktemp -d)"
+            SHA256="c856a2dd93c5a7b909597c066b9f9ca27fbda1a502b3f96077b7918c0f64a3d9"
             CACHE="/tmp/${SHA256}.tar.gz"
-            test -f "$CACHE" || curl "https://www.haskell.org/cabal/release/cabal-install-2.0.0.1/cabal-install-2.0.0.1.tar.gz" -o "$CACHE"
+            test -f "$CACHE" || curl "https://www.haskell.org/cabal/release/cabal-install-2.2.0.0/cabal-install-2.2.0.0.tar.gz" -o "$CACHE"
             echo "${SHA256} $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
-            ./bootstrap.sh --no-doc
+            PREFIX="$CABAL_PREFIX" PATH="$GHC_PREFIX/bin:$PATH" ./bootstrap.sh -j 4 --no-doc --global
         )
-        cabal update
-        cabal install stack
+
+        (
+            set -euo pipefail
+            TMPDIR="$(mktemp -d)"
+            PKGDIR="$TMPDIR/ghc-pkg"
+            export CABAL_CONFIG="$TMPDIR/config"
+            mkdir "$PKGDIR"
+
+            tee "$CABAL_CONFIG" <<CONFIG
+repository hackage.haskell.org
+  url: http://hackage.haskell.org/
+
+remote-repo-cache: $TMPDIR/pkgs
+world-file: $TMPDIR/pkg-world
+extra-prog-path:
+  - $GHC_PREFIX/bin
+  - $CABAL_PREFIX/bin
+package-db: $PKGDIR
+build-summary: $TMPDIR/logs/summary.log
+logs-dir: $TMPDIR/logs
+remote-build-reporting: anonymous
+jobs: \$ncpus
+install-dirs user
+  prefix: $STACK_PREFIX
+CONFIG
+
+            PATH="$CABAL_PREFIX/bin:$GHC_PREFIX/bin:$PATH"
+            cabal update
+            cabal install stack
+        )
         ;;
     phantom|phantomjs)
         DEST="$PKG_DIR/phantomjs"
