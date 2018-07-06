@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-exec oathtool --totp --base32 $(cat "$1")
+exec oathtool --totp --base32 "$(cat "$1")"
