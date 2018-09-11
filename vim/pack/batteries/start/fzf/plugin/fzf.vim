@@ -1,4 +1,3 @@
-" Base on https://raw.githubusercontent.com/junegunn/fzf/eb3afc03b57a20d1062880efe8e000abceeba3ee/plugin/fzf.vim
 " Copyright (c) 2017 Junegunn Choi
 "
 " MIT License
@@ -51,9 +50,9 @@ if s:is_win
   " Use utf-8 for fzf.vim commands
   " Return array of shell commands for cmd.exe
   function! s:wrap_cmds(cmds)
-    return ['@echo off', 'for /f "tokens=4" %%a in (''chcp'') do set origchcp=%%a', 'chcp 65001 > nul'] +
+    return map(['@echo off', 'for /f "tokens=4" %%a in (''chcp'') do set origchcp=%%a', 'chcp 65001 > nul'] +
           \ (type(a:cmds) == type([]) ? a:cmds : [a:cmds]) +
-          \ ['chcp %origchcp% > nul']
+          \ ['chcp %origchcp% > nul'], 'v:val."\r"')
   endfunction
 else
   let s:term_marker = ";#FZF"
@@ -115,6 +114,19 @@ function! s:fzf_exec()
       let s:exec = s:fzf_go
     elseif executable('fzf')
       let s:exec = 'fzf'
+    elseif s:is_win && !has('win32unix')
+      call s:warn('fzf executable not found.')
+      call s:warn('Download fzf binary for Windows from https://github.com/junegunn/fzf-bin/releases/')
+      call s:warn('and place it as '.s:base_dir.'\bin\fzf.exe')
+      throw 'fzf executable not found'
+    elseif !s:installed && executable(s:install) &&
+          \ input('fzf executable not found. Download binary? (y/n) ') =~? '^y'
+      redraw
+      echo
+      call s:warn('Downloading fzf binary. Please wait ...')
+      let s:installed = 1
+      call system(s:install.' --bin')
+      return s:fzf_exec()
     else
       redraw
       throw 'fzf executable not found'
@@ -219,6 +231,7 @@ function! s:common_sink(action, lines) abort
         doautocmd BufEnter
       endif
     endfor
+  catch /^Vim:Interrupt$/
   finally
     let &autochdir = autochdir
     silent! autocmd! fzf_swap

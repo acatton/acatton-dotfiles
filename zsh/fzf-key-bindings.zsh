@@ -1,1 +1,1 @@
-fzf-key-bindings@2f8238342b9b2388e4cf235a3de4e717890db0bb.zsh
+fzf-key-bindings@0.17.4.zsh
