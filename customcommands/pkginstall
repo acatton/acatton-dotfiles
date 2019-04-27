@@ -9,6 +9,15 @@ PKG_DIR="$HOME/.pkgs"
 
 mkdir -p "$PKG_DIR"
 
+echoerr() {
+    echo "$@" 1>&2
+}
+
+die() {
+    echoerr "$@"
+    exit 2
+}
+
 case $1 in
     rust|cargo)
         DEST="$PKG_DIR/rust/"
@@ -18,9 +27,35 @@ case $1 in
         curl https://sh.rustup.rs -sSf | bash -s -- --no-modify-path -y
         ;;
     ocaml|opam)
-        DEST="$PKG_DIR/ocaml/"
-        mkdir -p "$DEST"
-        curl https://raw.githubusercontent.com/hcarty/ocamlbrew/master/ocamlbrew-install | env OCAMLBREW_FLAGS="-r -b $DEST" bash
+        DEST="$PKG_DIR/ocaml"
+        [ -d "$DEST" ] && die "Already installed"
+
+        DEST_ORIG_OPAM="${DEST}/opam/orig"
+        DEST_OPAM="${DEST}/opam/bin"
+        DEST_ROOT="${DEST}/root"
+        mkdir -p "$DEST" "$DEST_OPAM" "$DEST_ROOT" "$DEST_ORIG_OPAM"
+        # I just manually implemented https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh
+        (
+            set -euo pipefail
+            VERSION='2.0.4'
+            SHA512SUM='e6b7e5657b1692c351c29a952960d1a0c3ea3df0fb0311744a35c9b518987d4978fed963d4b3f04d2fac2348a914834f7ce464fda766efa854556554c56a33b6'
+            CACHE="/tmp/${SHA512SUM}"
+            test -f "$CACHE" || curl -L "https://github.com/ocaml/opam/releases/download/${VERSION}/opam-2.0.4-x86_64-linux" -o "$CACHE"
+            echo "${SHA512SUM}  $CACHE" | sha512sum -c
+
+            ORIG_OPAM_BIN="$DEST_ORIG_OPAM/opam"
+            cp "$CACHE" "$ORIG_OPAM_BIN"
+            chmod a+x "$ORIG_OPAM_BIN"
+
+            OPAM_BIN="$DEST_OPAM/opam"
+            cat > "$OPAM_BIN" <<CONTENTS
+#!/usr/bin/env bash
+
+export OPAMROOT="$DEST_ROOT"
+exec "$ORIG_OPAM_BIN" "\$@"
+CONTENTS
+            chmod a+x "$OPAM_BIN"
+        )
         ;;
     ruby|rails|rvm)
         DEST="$PKG_DIR/rvm"
