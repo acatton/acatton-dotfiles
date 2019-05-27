@@ -8,8 +8,7 @@ pkgenable() {
             P="$PKGS_PATH/rust/"
             export RUSTUP_HOME="$P/rustup/"
             export CARGO_HOME="$P/cargo/"
-            export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$P/lib/"
-            export PATH="$PATH:$P/bin/:$CARGO_HOME/bin"
+            source "$P/cargo/env"
             ;;
         ocaml|opam)
             P=$(ls -1 "$PKGS_PATH"/ocaml/*/etc/ocamlbrew.bashrc | sort -r | head -n 1)
