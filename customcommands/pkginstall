@@ -207,6 +207,21 @@ WRAPPER
         chmod a+x "$SBT_WRAPPER"
         rm "$HOME/.sbt/preloaded" -rf
         ;;
+    elm)
+        DEST="$PKG_DIR/elm"
+        DEST_BIN="$DEST/bin"
+        mkdir -p "$DEST_BIN"
+        (
+            set -euo pipefail
+            cd $(mktemp -d)
+            SHA256="7a82bbf34955960d9806417f300e7b2f8d426933c09863797fe83b67063e0139"
+            CACHE="/tmp/${SHA256}.tar.gz"
+            test -f "$CACHE" || wget "https://github.com/elm/compiler/releases/download/0.19.0/binaries-for-linux.tar.gz" -O "$CACHE"
+            echo "$SHA256  $CACHE" | sha256sum -c
+            tar -xf "$CACHE"
+            mv elm "$DEST_BIN"
+        )
+        ;;
     *)
         echo "Pkgs unknown"
         exit 127

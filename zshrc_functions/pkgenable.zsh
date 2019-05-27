@@ -41,6 +41,11 @@ pkgenable() {
         idris)
             export PATH="$PKGS_PATH/idris/bin:$PATH"
             ;;
+        elm)
+            export ELM_HOME="$PKGS_PATH/elm/home/"
+            mkdir -p "$ELM_HOME"
+            export PATH="$PKGS_PATH/elm/bin/:$PATH"
+            ;;
         *)
             echo "No such package"
             return 127
