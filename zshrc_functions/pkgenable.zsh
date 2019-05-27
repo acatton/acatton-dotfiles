@@ -11,8 +11,8 @@ pkgenable() {
             source "$P/cargo/env"
             ;;
         ocaml|opam)
-            P=$(ls -1 "$PKGS_PATH"/ocaml/*/etc/ocamlbrew.bashrc | sort -r | head -n 1)
-            source $P
+            export PATH="$PATH:$PKGS_PATH/ocaml/opam/bin/"
+            eval $(opam env)
             ;;
         ruby|rail|rvm)
             P="$PKGS_PATH/rvm"
