@@ -23,6 +23,7 @@
 
 [alias]
   ci = commit
+  co = checkout
   branches = branch -av
 
 [pull]
