@@ -46,6 +46,17 @@ pkgenable() {
             mkdir -p "$ELM_HOME"
             export PATH="$PKGS_PATH/elm/bin/:$PATH"
             ;;
+        go)
+            export PATH="$PKGS_PATH/go/dist/bin:$PATH"
+            export GOCACHE="$PKGS_PATH/go/go-cache/"
+            export GOPATH="$PKGS_PATH/go/go-workspace/"
+            export CGO_ENABLED=0
+            export GO111MODULE=on
+            ;;
+        go-workspace)
+            export GOPATH="$PWD"
+            export PATH="$PATH:$GOPATH/bin"
+            ;;
         *)
             echo "No such package"
             return 127

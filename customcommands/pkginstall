@@ -211,6 +211,21 @@ WRAPPER
             mv elm "$DEST_BIN"
         )
         ;;
+    go)
+      DEST="$PKG_DIR/go"
+      DEST_DIST="$DEST/dist"
+      mkdir -p "$DEST/go-cache" "$DEST/go-workspace"
+      (
+        set -euo pipefail
+        cd $(mktemp -d)
+        SHA256="aea86e3c73495f205929cfebba0d63f1382c8ac59be081b6351681415f4063cf"
+        CACHE="/tmp/${SHA256}.tar.gz"
+        test -f "$CACHE" || wget "https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz" -O "$CACHE"
+        echo "$SHA256 $CACHE" | sha256sum -c
+        tar -xvf "$CACHE"
+        mv go "$DEST_DIST"
+      )
+      ;;
     *)
         echo "Pkgs unknown"
         exit 127
