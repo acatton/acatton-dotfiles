@@ -22,8 +22,9 @@ pkgenable() {
         cabal|haskell|stack)
             PATH="$PKGS_PATH/haskell/cabal/bin:$PKGS_PATH/haskell/ghc/bin:$PKGS_PATH/haskell/stack/bin:$PATH"
             ;;
-        otp|erlang|rebar)
+        otp|erlang|erl|rebar)
             export PATH="$PKGS_PATH/erlang/bin:$PATH"
+            export REBAR_CACHE_DIR="$PKGS_PATH/erlang/rebar-cache/"
             ;;
         npm|node)
             export PATH="$PKGS_PATH/node/bin:$PATH"
