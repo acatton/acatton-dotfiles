@@ -1,14 +1,6 @@
-[submodule "vim-plugin-ale"]
-    path = vim/pack/batteries/start/ale
-    url = git@github.com:w0rp/ale.git
-
 [submodule "vim-plugin-codi"]
     path = vim/pack/batteries/opt/codi
     url = git@github.com:metakirby5/codi.vim.git
-
-[submodule "vim-plugin-completor"]
-    path = vim/pack/batteries/start/completor
-    url = git@github.com:maralla/completor.vim.git
 
 [submodule "vim-plugin-easymotion"]
     path = vim/pack/batteries/start/easymotion
