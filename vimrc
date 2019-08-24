@@ -72,13 +72,6 @@ autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('
 " Remove trailing spaces
 autocmd BufWritePre *.{py,c,cpp,ml,rb,hs} :%s/\s\+$//e
 
-
-" ALE highlighting
-let g:ale_set_signs = 0
-let g:ale_linters = {
-\  'python': ['pycodestyle', 'mypy'],
-\}
-
 " Lightline
 let g:lightline = {
 \   'colorscheme': 'one',
@@ -100,7 +93,41 @@ function! LightlineFullFilename()
 endfunction
 
 " FZF
+let $FZF_DEFAULT_COMMAND = 'rg --files'
 let g:fzf_files_options = ['--preview=head -c 512 {}', '--preview-window=right:30%']
 "noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
 noremap <C-T> :Files<CR>
-nnoremap <leader>d :ALEGoToDefinitionInTab<CR>
+nnoremap <leader>d :LspDefinition<CR>
+
+set completeopt-=preview
+set completeopt+=menuone,noselect
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {'max_buffer_size': 5000000},
+    \ 'priority': 10,
+    \ }))
+
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': ['_vim_asyncomplete_pyls'],
+    \ 'whitelist': ['python'],
+    \ })
+
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'go-langserver',
+    \ 'cmd': ['/home/antoine/Development/work/go/bin/go-langserver', '-gocodecompletion', '-format-tool', 'gofmt'],
+    \ 'whitelist': ['go'],
+    \ })
+
+let g:lsp_signs_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
