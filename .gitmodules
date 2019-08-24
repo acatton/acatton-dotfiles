@@ -1,61 +1,79 @@
-[submodule "vim-plugin-ale"]
-    path = vim/pack/batteries/start/ale
-    url = git@github.com:w0rp/ale.git
-
 [submodule "vim-plugin-codi"]
     path = vim/pack/batteries/opt/codi
-    url = git@github.com:metakirby5/codi.vim.git
-
-[submodule "vim-plugin-completor"]
-    path = vim/pack/batteries/start/completor
-    url = git@github.com:maralla/completor.vim.git
+    url = https://github.com/metakirby5/codi.vim.git
 
 [submodule "vim-plugin-easymotion"]
     path = vim/pack/batteries/start/easymotion
-    url = git@github.com:easymotion/vim-easymotion.git
+    url = https://github.com/easymotion/vim-easymotion.git
 
 [submodule "vim-plugin-elm"]
     path = vim/pack/batteries/start/elm
-    url = git@github.com:lambdatoast/elm.vim.git
+    url = https://github.com/lambdatoast/elm.vim.git
 
 [submodule "vim-plugin-fugitive"]
     path = vim/pack/batteries/start/fugitive
-    url = git@github.com:tpope/vim-fugitive.git
+    url = https://github.com/tpope/vim-fugitive.git
 
 [submodule "vim-plugin-incsearch"]
     path = vim/pack/batteries/start/incsearch
-    url = git@github.com:haya14busa/incsearch.vim.git
+    url = https://github.com/haya14busa/incsearch.vim.git
 
 [submodule "vim-plugin-lightline"]
     path = vim/pack/batteries/start/lightline
-    url = git@github.com:itchyny/lightline.vim.git
+    url = https://github.com/itchyny/lightline.vim.git
 
 [submodule "vim-plugin-nerdcommenter"]
     path = vim/pack/batteries/start/nerdcommenter
-    url = git@github.com:scrooloose/nerdcommenter.git
+    url = https://github.com/scrooloose/nerdcommenter.git
 
 [submodule "vim-plugin-nerdtree"]
     path = vim/pack/batteries/start/nerdtree
-    url = git@github.com:scrooloose/nerdtree.git
+    url = https://github.com/scrooloose/nerdtree.git
 
 [submodule "vim-plugin-rust"]
     path = vim/pack/batteries/start/rust
-    url = git@github.com:rust-lang/rust.vim.git
+    url = https://github.com/rust-lang/rust.vim.git
 
 [submodule "vim-plugin-surround"]
     path = vim/pack/batteries/start/surround
-    url = git@github.com:tpope/vim-surround.git
+    url = https://github.com/tpope/vim-surround.git
 
 [submodule "vim-plugin-vala"]
     path = vim/pack/batteries/start/vala
-    url = git@github.com:arrufat/vala.vim.git
+    url = https://github.com/arrufat/vala.vim.git
 
 [submodule "zsh-plugin-syntax-highlighter"]
     path = zsh/syntax-highlighting
-    url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+    url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+
 [submodule "vim/pack/batteries/start/fzf.vim"]
-	path = vim/pack/batteries/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
+    path = vim/pack/batteries/start/fzf.vim
+    url = https://github.com/junegunn/fzf.vim
+
 [submodule "vim/pack/batteries/start/typescript"]
 	path = vim/pack/batteries/start/typescript
 	url = https://github.com/leafgarland/typescript-vim.git
+
+[submodule "vim/pack/batteries/start/asyncomplete"]
+    path = vim/pack/batteries/start/asyncomplete
+    url = https://github.com/prabirshrestha/asyncomplete.vim.git
+
+[submodule "vim/pack/batteries/start/asyncomplete-file"]
+    path = vim/pack/batteries/start/asyncomplete-file
+    url = https://github.com/prabirshrestha/asyncomplete-file.vim.git
+
+[submodule "vim/pack/batteries/start/lsp"]
+    path = vim/pack/batteries/start/lsp
+    url = https://github.com/prabirshrestha/vim-lsp.git
+
+[submodule "vim/pack/batteries/start/asyncomplete-lsp"]
+    path = vim/pack/batteries/start/asyncomplete-lsp
+    url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
+
+[submodule "vim/pack/batteries/start/async"]
+    path = vim/pack/batteries/start/async
+    url = https://github.com/prabirshrestha/async.vim.git
+
+[submodule "vim/pack/batteries/start/asyncomplete-buffer"]
+    path = vim/pack/batteries/start/asyncomplete-buffer
+    url = https://github.com/prabirshrestha/asyncomplete-buffer.vim.git
