@@ -1,50 +1,50 @@
 [submodule "vim-plugin-codi"]
     path = vim/pack/batteries/opt/codi
-    url = git@github.com:metakirby5/codi.vim.git
+    url = https://github.com/metakirby5/codi.vim.git
 
 [submodule "vim-plugin-easymotion"]
     path = vim/pack/batteries/start/easymotion
-    url = git@github.com:easymotion/vim-easymotion.git
+    url = https://github.com/easymotion/vim-easymotion.git
 
 [submodule "vim-plugin-elm"]
     path = vim/pack/batteries/start/elm
-    url = git@github.com:lambdatoast/elm.vim.git
+    url = https://github.com/lambdatoast/elm.vim.git
 
 [submodule "vim-plugin-fugitive"]
     path = vim/pack/batteries/start/fugitive
-    url = git@github.com:tpope/vim-fugitive.git
+    url = https://github.com/tpope/vim-fugitive.git
 
 [submodule "vim-plugin-incsearch"]
     path = vim/pack/batteries/start/incsearch
-    url = git@github.com:haya14busa/incsearch.vim.git
+    url = https://github.com/haya14busa/incsearch.vim.git
 
 [submodule "vim-plugin-lightline"]
     path = vim/pack/batteries/start/lightline
-    url = git@github.com:itchyny/lightline.vim.git
+    url = https://github.com/itchyny/lightline.vim.git
 
 [submodule "vim-plugin-nerdcommenter"]
     path = vim/pack/batteries/start/nerdcommenter
-    url = git@github.com:scrooloose/nerdcommenter.git
+    url = https://github.com/scrooloose/nerdcommenter.git
 
 [submodule "vim-plugin-nerdtree"]
     path = vim/pack/batteries/start/nerdtree
-    url = git@github.com:scrooloose/nerdtree.git
+    url = https://github.com/scrooloose/nerdtree.git
 
 [submodule "vim-plugin-rust"]
     path = vim/pack/batteries/start/rust
-    url = git@github.com:rust-lang/rust.vim.git
+    url = https://github.com/rust-lang/rust.vim.git
 
 [submodule "vim-plugin-surround"]
     path = vim/pack/batteries/start/surround
-    url = git@github.com:tpope/vim-surround.git
+    url = https://github.com/tpope/vim-surround.git
 
 [submodule "vim-plugin-vala"]
     path = vim/pack/batteries/start/vala
-    url = git@github.com:arrufat/vala.vim.git
+    url = https://github.com/arrufat/vala.vim.git
 
 [submodule "zsh-plugin-syntax-highlighter"]
     path = zsh/syntax-highlighting
-    url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+    url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 [submodule "vim/pack/batteries/start/fzf.vim"]
     path = vim/pack/batteries/start/fzf.vim
