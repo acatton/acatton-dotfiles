@@ -51,8 +51,8 @@
     url = https://github.com/junegunn/fzf.vim
 
 [submodule "vim/pack/batteries/start/typescript"]
-	path = vim/pack/batteries/start/typescript
-	url = https://github.com/leafgarland/typescript-vim.git
+    path = vim/pack/batteries/start/typescript
+    url = https://github.com/leafgarland/typescript-vim.git
 
 [submodule "vim/pack/batteries/start/asyncomplete"]
     path = vim/pack/batteries/start/asyncomplete
