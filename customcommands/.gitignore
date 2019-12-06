@@ -1,3 +1,4 @@
 /docker
 /_vim_asyncomplete_pyls
 /_vim_asyncomplete_go-langserver
+/_vim_asyncomplete_rls

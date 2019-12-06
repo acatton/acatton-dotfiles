@@ -125,8 +125,14 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
     \ 'name': 'go-langserver',
-    \ 'cmd': ['/home/antoine/Development/work/go/bin/go-langserver', '-gocodecompletion', '-format-tool', 'gofmt'],
+    \ 'cmd': ['_vim_asyncomplete_go-langserver', '-gocodecompletion', '-format-tool', 'gofmt'],
     \ 'whitelist': ['go'],
+    \ })
+
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'rls',
+    \ 'cmd': ['_vim_asyncomplete_rls'],
+    \ 'whitelist': ['rust'],
     \ })
 
 let g:lsp_signs_enabled = 0
