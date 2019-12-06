@@ -11,6 +11,11 @@ case "$1" in
     haskell|cabal)
         rm "$PKG_DIR/haskell" "$HOME/.cabal" "$HOME/.stack" -rf
         ;;
+    go)
+        GO_DIR="$PKG_DIR/go"
+        chmod u+rwX -R "$GO_DIR"
+        rm "$GO_DIR" -rf
+        ;;
     *)
         echo "Pkg unknown"
         exit 127
