@@ -98,6 +98,7 @@ let g:fzf_files_options = ['--preview=head -c 512 {}', '--preview-window=right:3
 "noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
 noremap <C-T> :Files<CR>
 nnoremap <leader>d :LspDefinition<CR>
+nnoremap <leader>i :LspHover<CR>
 
 set completeopt-=preview
 set completeopt+=menuone,noselect
