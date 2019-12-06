@@ -33,7 +33,6 @@ zmodload zsh/terminfo
 
 export EDITOR="vimx"
 export PAGER="most"
-export GIT_PAGER="less"
 export VISUAL="vimx"
 
 # Avoid having global files telling me where binaries are

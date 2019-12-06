@@ -47,7 +47,7 @@ pkgenable() {
             export PATH="$PKGS_PATH/elm/bin/:$PATH"
             ;;
         go)
-            export PATH="$PKGS_PATH/go/dist/bin:$PATH"
+            export PATH="$PKGS_PATH/go/dist/bin:$PATH:$PKGS_PATH/go/go-workspace/bin"
             export GOCACHE="$PKGS_PATH/go/go-cache/"
             export GOPATH="$PKGS_PATH/go/go-workspace/"
             export CGO_ENABLED=0
