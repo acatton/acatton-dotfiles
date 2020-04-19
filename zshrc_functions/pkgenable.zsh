@@ -38,9 +38,6 @@ pkgenable() {
         scala|sbt)
             export PATH="$PKGS_PATH/scala/bin:$PATH"
             ;;
-        idris)
-            export PATH="$PKGS_PATH/idris/bin:$PATH"
-            ;;
         elm)
             export ELM_HOME="$PKGS_PATH/elm/home/"
             mkdir -p "$ELM_HOME"
