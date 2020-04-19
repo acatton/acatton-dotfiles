@@ -77,3 +77,6 @@
 [submodule "vim/pack/batteries/start/asyncomplete-buffer"]
     path = vim/pack/batteries/start/asyncomplete-buffer
     url = https://github.com/prabirshrestha/asyncomplete-buffer.vim.git
+[submodule "vim/pack/batteries/start/idris"]
+	path = vim/pack/batteries/start/idris
+	url = https://github.com/idris-hackers/idris-vim.git
