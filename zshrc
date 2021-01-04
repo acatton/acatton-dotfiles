@@ -32,7 +32,7 @@ unsetopt listambiguous
 zmodload zsh/terminfo
 
 export EDITOR="vimx"
-export PAGER="most"
+export PAGER="less -R"
 export VISUAL="vimx"
 
 # Avoid having global files telling me where binaries are
