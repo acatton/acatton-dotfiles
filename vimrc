@@ -99,6 +99,7 @@ let g:fzf_files_options = ['--preview=head -c 512 {}', '--preview-window=right:3
 noremap <C-T> :Files<CR>
 nnoremap <leader>d :LspDefinition<CR>
 nnoremap <leader>i :LspHover<CR>
+nnoremap <leader>h :LspPeekDefinition<CR>
 
 set completeopt-=preview
 set completeopt+=menuone,noselect
@@ -118,23 +119,31 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'priority': 10,
     \ }))
 
-au User lsp_setup call lsp#register_server({
-    \ 'name': 'pyls',
-    \ 'cmd': ['_vim_asyncomplete_pyls'],
-    \ 'whitelist': ['python'],
-    \ })
 
 au User lsp_setup call lsp#register_server({
-    \ 'name': 'go-langserver',
-    \ 'cmd': ['_vim_asyncomplete_go-langserver', '-gocodecompletion', '-format-tool', 'gofmt'],
+    \ 'name': 'gopls',
+    \ 'cmd': ['_vim_asyncomplete_gopls', 'serve'],
     \ 'whitelist': ['go'],
     \ })
 
 au User lsp_setup call lsp#register_server({
-    \ 'name': 'rls',
-    \ 'cmd': ['_vim_asyncomplete_rls'],
+  \ 'name': 'clangd',
+  \ 'cmd': ['_vim_asyncomplete_clangd'],
+  \ 'whitelist': ['c'],
+  \ })
+
+au User lsp_setup call lsp#register_server({
+  \ 'name': 'ocaml-lsp',
+  \ 'cmd': ['_vim_asyncomplete_ocaml-lsp'],
+  \ 'whitelist': ['ocaml'],
+  \ })
+
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'rust-analyzer',
+    \ 'cmd': ['_vim_asyncomplete_rust-analyzer'],
     \ 'whitelist': ['rust'],
     \ })
+
 
 let g:lsp_signs_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1

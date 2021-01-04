@@ -85,14 +85,12 @@ CONTENTS
         (
             set -euo pipefail
             cd $(mktemp -d)
-            SHA256="20b52366d3502c60d4aec0bd5052c841a94bf1cd5d74b2ea1e498c1a2ada8ce3"
+            SHA256="b79e02e48d0a1ee4cd4ae138de97fda5413542f2a4f441a7d0e189697b8da563"
             CACHE="/tmp/${SHA256}.tar.xz"
-            VERSION="v12.4.0"
-            test -f "$CACHE" || curl "https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.xz" -o "$CACHE"
+            VERSION="v12.18.3"
+            test -f "$CACHE" || curl "https://nodejs.org/dist/${VERSION}/node-${VERSION}-linux-x64.tar.xz" -o "$CACHE"
             echo "${SHA256}  $CACHE" | sha256sum -c
-            tar -x --strip-components=1 -f "$CACHE"
-            ./configure --prefix="$DEST"
-            make -j4 all install
+            tar -x --strip-components=1 -f "$CACHE" -C "$DEST"
         )
         ;;
     cabal|haskell|stack)
@@ -106,14 +104,16 @@ CONTENTS
         (
             set -euo pipefail
             cd "$(mktemp -d)"
-            SHA256="30a402c6d4754a6c020e0547f19ae3ac42e907e35349aa932d347f73e421a8e2"
+            SHA256="c1e31d798b013699b3c0de4fda27fb4cda47f572df0e75e3bd598a3012060615"
             CACHE="/tmp/${SHA256}.tar.xz"
-            test -f "$CACHE" || curl "https://downloads.haskell.org/~ghc/8.4.3/ghc-8.4.3-x86_64-deb8-linux.tar.xz" -o "$CACHE"
+            test -f "$CACHE" || curl "https://downloads.haskell.org/~ghc/8.10.1/ghc-8.10.1-x86_64-deb10-linux.tar.xz" -o "$CACHE"
             echo "${SHA256}  $CACHE" | sha256sum -c
             tar -x --strip-components=1 -f "$CACHE"
             ./configure --prefix="$GHC_PREFIX"
             make -j4 install
         )
+
+        exit 0
 
         # Install cabal
         (
@@ -200,30 +200,63 @@ WRAPPER
         DEST="$PKG_DIR/elm"
         DEST_BIN="$DEST/bin"
         mkdir -p "$DEST_BIN"
+        mkdir -p "$DEST/elm-home"
         (
             set -euo pipefail
             cd $(mktemp -d)
-            SHA256="7a82bbf34955960d9806417f300e7b2f8d426933c09863797fe83b67063e0139"
-            CACHE="/tmp/${SHA256}.tar.gz"
-            test -f "$CACHE" || wget "https://github.com/elm/compiler/releases/download/0.19.0/binaries-for-linux.tar.gz" -O "$CACHE"
+            SHA256="e44af52bb27f725a973478e589d990a6428e115fe1bb14f03833134d6c0f155c"
+            CACHE="/tmp/${SHA256}.gz"
+            test -f "$CACHE" || curl -L -o "$CACHE" "https://github.com/elm/compiler/releases/download/0.19.1/binary-for-linux-64-bit.gz"
             echo "$SHA256  $CACHE" | sha256sum -c
-            tar -xf "$CACHE"
-            mv elm "$DEST_BIN"
+            ELM_BIN="$DEST_BIN"
+            zcat $CACHE > "$DEST_BIN/elm"
+            chmod a+x "$DEST_BIN/elm"
         )
         ;;
-    go)
+    go|golang)
       DEST="$PKG_DIR/go"
       DEST_DIST="$DEST/dist"
       mkdir -p "$DEST/go-cache" "$DEST/go-workspace"
       (
         set -euo pipefail
         cd $(mktemp -d)
-        SHA256="692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c"
+        SHA256="2f49eb17ce8b48c680cdb166ffd7389702c0dec6effa090c324804a5cac8a7f8"
         CACHE="/tmp/${SHA256}.tar.gz"
-        test -f "$CACHE" || wget "https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz" -O "$CACHE"
-        echo "$SHA256 $CACHE" | sha256sum -c
+        test -f "$CACHE" || wget "https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz" -O "$CACHE"
+        echo "$SHA256  $CACHE" | sha256sum -c
         tar -xvf "$CACHE"
         mv go "$DEST_DIST"
+      )
+      ;;
+    chezscheme)
+      DEST="$PKG_DIR/chezscheme"
+      mkdir "$DEST"
+      (
+        set -euo pipefail
+        cd $(mktemp -d)
+        SHA256="7189f839f63e7f0e58277138f5873f91c23eae0706a5bfd7081dab5289268f10"
+        CACHE="/tmp/${SHA256}.tar.gz"
+        test -f "$CACHE" || wget "https://github.com/cisco/ChezScheme/releases/download/v9.5.2/csv9.5.2.tar.gz" -O "$CACHE"
+        echo "$SHA256 $CACHE" | sha256sum -c
+        tar -xvf "$CACHE" --strip-components=1
+        ./configure --installprefix="$DEST" --threads
+        make install
+      )
+      chmod a-w -R "$DEST"
+      ;;
+    idris2|idris)
+      DEST="$PKG_DIR/idris2"
+      mkdir -p "$DEST"
+      (
+        set -euo pipefail
+
+        cd $(mktemp -d)
+        SHA256="86f15cf37a3e5e01a586dc1900f1d89bbc2518b8e4b0d63872255b42b9e0ae24"
+        CACHE="/tmp/${SHA256}.tar.gz"
+        test -f "$CACHE" || wget "http://www.idris-lang.org/idris2-src/idris2-0.1.0.tgz" -O "$CACHE"
+        echo "$SHA256  $CACHE" | sha256sum -c
+        tar --strip-components=1 -xvf "$CACHE"
+        make PREFIX="$DEST" CC=gcc install-fromc
       )
       ;;
     *)

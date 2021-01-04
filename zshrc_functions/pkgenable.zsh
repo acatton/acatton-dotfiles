@@ -39,7 +39,7 @@ pkgenable() {
             export PATH="$PKGS_PATH/scala/bin:$PATH"
             ;;
         elm)
-            export ELM_HOME="$PKGS_PATH/elm/home/"
+            export ELM_HOME="$PKGS_PATH/elm/elm-home/"
             mkdir -p "$ELM_HOME"
             export PATH="$PKGS_PATH/elm/bin/:$PATH"
             ;;
@@ -53,6 +53,15 @@ pkgenable() {
         go-workspace)
             export GOPATH="$PWD"
             export PATH="$PATH:$GOPATH/bin"
+            ;;
+        idris2|idris)
+            export PATH="$PATH:$PKGS_PATH/idris2/bin/"
+            ;;
+        chezscheme)
+            export PATH="$PATH:$PKGS_PATH/chezscheme/bin"
+            ;;
+        zz)
+            export PATH="$PATH:$PKGS_PATH/zz/bin/"
             ;;
         *)
             echo "No such package"
