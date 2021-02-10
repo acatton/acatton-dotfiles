@@ -58,8 +58,7 @@ filetype plugin indent on
 " If you forgot to do sudoedit or sudo vi
 command SudoW !sudo tee % > /dev/null
 
-" Remap the leader key
-let mapleader=','
+"let mapleader=','
 
 set t_Co=256
 
