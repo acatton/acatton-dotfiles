@@ -89,10 +89,9 @@ function! LightlineFullFilename()
 endfunction
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'rg --files'
 let g:fzf_files_options = ['--preview=head -c 512 {}', '--preview-window=right:30%']
-"noremap <silent> <C-T> :call fzf#run(fzf#wrap('command-t', {'options': '--color=bw'}))<CR>
-noremap <C-T> :Files<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>d :LspDefinition<CR>
 nnoremap <leader>i :LspHover<CR>
 nnoremap <leader>h :LspPeekDefinition<CR>
