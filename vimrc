@@ -5,9 +5,6 @@ colorscheme default
 " Lightline
 set noshowmode
 
-" Bepo layout remap
-source ~/.vimrc_bepo_remap
-
 " Highlight search result
 set hls
 
