@@ -57,8 +57,6 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-source ~/.zshrc_bepo_remap
-
 # VCS info
 setopt prompt_subst
 autoload -Uz vcs_info
