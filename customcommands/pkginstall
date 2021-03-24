@@ -220,9 +220,9 @@ WRAPPER
       (
         set -euo pipefail
         cd $(mktemp -d)
-        SHA256="2f49eb17ce8b48c680cdb166ffd7389702c0dec6effa090c324804a5cac8a7f8"
+        SHA256="013a489ebb3e24ef3d915abe5b94c3286c070dfe0818d5bca8108f1d6e8440d2"
         CACHE="/tmp/${SHA256}.tar.gz"
-        test -f "$CACHE" || wget "https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz" -O "$CACHE"
+        test -f "$CACHE" || wget "https://dl.google.com/go/go1.16.linux-amd64.tar.gz" -O "$CACHE"
         echo "$SHA256  $CACHE" | sha256sum -c
         tar -xvf "$CACHE"
         mv go "$DEST_DIST"
