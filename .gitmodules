@@ -63,7 +63,7 @@
     url = https://github.com/prabirshrestha/asyncomplete-file.vim.git
 
 [submodule "vim/pack/batteries/start/lsp"]
-    path = vim/pack/batteries/start/lsp
+    path = vim/pack/batteries/start/vim-lsp
     url = https://github.com/prabirshrestha/vim-lsp.git
 
 [submodule "vim/pack/batteries/start/asyncomplete-lsp"]
