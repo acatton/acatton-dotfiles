@@ -98,4 +98,6 @@ export PYTHONSTARTUP=~/.pystartup
 FZF_DEFAULT_OPTS='--color=bw'
 source ~/.zsh/fzf-key-bindings.zsh
 
+export BAT_THEME=GitHub
+
 source ~/.zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh
