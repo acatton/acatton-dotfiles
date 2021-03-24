@@ -97,3 +97,5 @@ export PYTHONSTARTUP=~/.pystartup
 # fzf completion
 FZF_DEFAULT_OPTS='--color=bw'
 source ~/.zsh/fzf-key-bindings.zsh
+
+source ~/.zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh

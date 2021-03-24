@@ -80,3 +80,6 @@
 [submodule "vim/pack/batteries/start/idris"]
 	path = vim/pack/batteries/start/idris
 	url = https://github.com/idris-hackers/idris-vim.git
+[submodule "zsh/zsh-vim-mode"]
+	path = zsh/zsh-vim-mode
+	url = https://github.com/softmoth/zsh-vim-mode
