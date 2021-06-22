@@ -39,24 +39,6 @@ export VISUAL="vimx"
 PATH="/usr/lib64/ccache:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export PATH="${PATH}:${HOME}/.customcommands/:${HOME}/.bin/:${HOME}/.local/bin"
 
-#############
-# VIM MODE
-#############
-
-set -o vi
-autoload edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
-
-function zle-line-init zle-keymap-select {
-    RPS1="%B${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}%b"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
 # VCS info
 setopt prompt_subst
 autoload -Uz vcs_info
@@ -96,8 +78,18 @@ export PYTHONSTARTUP=~/.pystartup
 
 # fzf completion
 FZF_DEFAULT_OPTS='--color=bw'
-source ~/.zsh/fzf-key-bindings.zsh
 
 export BAT_THEME=GitHub
 
+setopt PROMPT_SUBST
+
 source ~/.zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh
+
+source ~/.zsh/fzf-key-bindings.zsh
+unset MODE_CURSOR_DEFAULT
+MODE_INDICATOR_VIINS='%BINSERT%b '
+MODE_INDICATOR_VICMD='%BNORMAL%b '
+MODE_INDICATOR_REPLACE='%BREPLACE%b'
+MODE_INDICATOR_SEARCH='%BSEARCH%b '
+MODE_INDICATOR_VISUAL='%BVISUAL%b '
+MODE_INDICATOR_VLINE='%BV-LINE%b '
