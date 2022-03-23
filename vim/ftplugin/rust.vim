@@ -1,3 +1,3 @@
-set colorcolumn=100
+setlocal colorcolumn=100
 
-set noet sts=4 ts=4 sw=4
+setlocal et sts=4 ts=4 sw=4
