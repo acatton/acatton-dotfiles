@@ -65,7 +65,7 @@ highlight UnderCursor ctermbg=153
 autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " Remove trailing spaces
-autocmd BufWritePre *.{py,c,cpp,ml,rb,hs,go} :%s/\s\+$//e
+autocmd BufWritePre *.{py,c,cpp,ml,rb,hs,go,rs} :%s/\s\+$//e
 
 " Lightline
 let g:lightline = {
