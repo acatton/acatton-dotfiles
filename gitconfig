@@ -38,3 +38,6 @@
 
 [core]
   pager = delta --light
+
+[init]
+  defaultBranch = master
