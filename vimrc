@@ -53,8 +53,9 @@ let g:tex_flavor = "latex" " Default tex is latex
 
 filetype on        " enables filetype detection
 filetype plugin on " enables filetype specific plugins
-filetype plugin indent on
 
+" This is mostly broken and annoying
+" filetype plugin indent on
 
 "let mapleader=','
 
