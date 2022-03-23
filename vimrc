@@ -55,8 +55,6 @@ filetype on        " enables filetype detection
 filetype plugin on " enables filetype specific plugins
 filetype plugin indent on
 
-" If you forgot to do sudoedit or sudo vi
-command SudoW !sudo tee % > /dev/null
 
 "let mapleader=','
 
