@@ -86,3 +86,6 @@
 [submodule "vim/pack/batteries/start/ripgrep"]
 	path = vim/pack/batteries/start/ripgrep
 	url = http://github.com/jremmen/vim-ripgrep
+[submodule "vim/pack/batteries/start/eunuch"]
+	path = vim/pack/batteries/start/eunuch
+	url = https://github.com/tpope/vim-eunuch.git
