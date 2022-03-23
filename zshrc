@@ -66,6 +66,11 @@ setopt pushdminus
 
 # No duplicate line in the history
 setopt HIST_IGNORE_DUPS
+# Command history
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000000
+export SAVEHIST=10000000
+setopt appendhistory
 
 # Custom aliases
 source ~/.zshrc_aliases
