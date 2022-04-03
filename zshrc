@@ -38,6 +38,7 @@ export VISUAL="vimx"
 # Avoid having global files telling me where binaries are
 PATH="/usr/lib64/ccache:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export PATH="${PATH}:${HOME}/.customcommands/:${HOME}/.bin/:${HOME}/.local/bin"
+test "x${CUSTOM_FIREJAIL_PATH}" '!=' "x" && export PATH="${CUSTOM_FIREJAIL_PATH}:${PATH}"
 
 # VCS info
 setopt prompt_subst
@@ -50,7 +51,10 @@ precmd() {
     vcs_info
 }
 
-PROMPT=$'[%n@%m %(5~|%-1~/…/%3~|%~)${vcs_info_msg_0_}]$ '
+_PROMPT_FIREJAIL_ENV=''
+test "x${CUSTOM_FIREJAIL_ENV}" '!=' "x" && _PROMPT_FIREJAIL_ENV="%F{blue}(${CUSTOM_FIREJAIL_ENV})%f"
+
+PROMPT=$'${_PROMPT_FIREJAIL_ENV}[%n@%m %(5~|%-1~/…/%3~|%~)${vcs_info_msg_0_}]$ '
 
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
@@ -68,6 +72,7 @@ setopt pushdminus
 setopt HIST_IGNORE_DUPS
 # Command history
 export HISTFILE=~/.zsh_history
+test "x${CUSTOM_FIREJAIL_ENV}" '!=' 'x' && export HISTFILE=~/.pkgs/cache/zsh_history
 export HISTSIZE=10000000
 export SAVEHIST=10000000
 setopt appendhistory
@@ -98,3 +103,5 @@ MODE_INDICATOR_REPLACE='%BREPLACE%b'
 MODE_INDICATOR_SEARCH='%BSEARCH%b '
 MODE_INDICATOR_VISUAL='%BVISUAL%b '
 MODE_INDICATOR_VLINE='%BV-LINE%b '
+
+export CUSTOM_FIREJAIL_PROFILEDIR="/home/antoine/Dev/perso/dotfiles/pkg_profiles"
