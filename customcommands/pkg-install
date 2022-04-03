@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+PROFILEDIR="${CUSTOM_FIREJAIL_PROFILEDIR}"
+PKGDIR="${HOME}/.pkgs"
+mkdir -v -p "${PKGDIR}"
+mkdir -v -p "${PKGDIR}/cache"
+
+set -euo pipefail
+
+# _cachename <hash> <ext>
+_cachename() {
+    local hash_="$1"
+    local ext="$2"
+    echo "/tmp/${hash_}.${ext}"
+}
+
+# _download <url> <ext> <hashalgo> <hash>
+_download() {
+    local url="$1"
+    local ext="$2"
+    local hashalgo="$3"
+    local hash_="$4"
+
+    local cache="$(_cachename "${hash_}" "${ext}")"
+
+    test -f "${cache}" || curl -o "${cache}" "$url"
+    echo "${hash_} ${cache}" | "${hashalgo}sum" -c
+}
+
+case "$1" in
+  go|golang)
+    DEST="${PKGDIR}/go"
+    VERSION='1.18'
+    SHA256='e85278e98f57cdb150fe8409e6e5df5343ecb13cebf03a5d5ff12bd55a80264f'
+    _download "https://dl.google.com/go/go${VERSION}.linux-amd64.tar.gz" tar.gz sha256 "$SHA256"
+    CACHE="$(_cachename "${SHA256}" tar.gz)"
+
+    mkdir "$DEST" -v # We want this to fail in case it already exists
+    mkdir "${DEST}/"{dist,cache,workspace} -v
+    echo "Extracting distribution"
+    tar --strip-components=1 -xf "${CACHE}" -C "${DEST}/dist/"
+    echo "Done"
+
+    # Install utilities
+    firejail --profile="${PROFILEDIR}/install-go.profile" ${DEST}/dist/bin/go install github.com/go-delve/delve/cmd/dlv@latest
+    firejail --profile="${PROFILEDIR}/install-go.profile" ${DEST}/dist/bin/go install golang.org/x/tools/gopls@latest
+    ;;
+  *)
+    echo "Unknown package '$1'"
+    exit 2
+    ;;
+esac
