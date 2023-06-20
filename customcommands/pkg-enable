@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PROFILEDIR="${CUSTOM_FIREJAIL_PROFILEDIR}"
+PKGDIR="${HOME}/.pkgs"
+mkdir -v -p "${PKGDIR}"
+mkdir -v -p "${PKGDIR}/cache"
+
+die() {
+    echo "$@" > /dev/stderr
+    exit 127
+}
+
+case "$1" in
+  go|golang)
+    PROFILENAME=go
+    ;;
+  rust|cargo)
+    PROFILENAME=rust
+    ;;
+  ocaml|opam)
+    PROFILENAME=ocaml
+    ;;
+  nodejs|npm|yarn|js)
+    PROFILENAME=nodejs
+    ;;
+  *)
+    echo "Unknown package '$1'"
+    exit 2
+    ;;
+esac
+
+test -d "$PKGDIR/$PROFILENAME" || die "Install package before hand"
+# TODO: Fix https://github.com/netblue30/firejail/issues/1127
+exec ~/Dev/floss/firejail/tmp/bin/firejail --profile="${PROFILEDIR}/run-${PROFILENAME}.profile" "$SHELL"

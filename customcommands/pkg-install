@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
+FIREJAIL=firejail
+# TODO: Fix https://github.com/netblue30/firejail/issues/1127
+FIREJAIL=~/Dev/floss/firejail/tmp/bin/firejail
 PROFILEDIR="${CUSTOM_FIREJAIL_PROFILEDIR}"
 PKGDIR="${HOME}/.pkgs"
 mkdir -v -p "${PKGDIR}"
 mkdir -v -p "${PKGDIR}/cache"
-
-set -euo pipefail
+mkdir -v -p "${PKGDIR}/cache/"{vim-undo,vim-swap}
 
 # _cachename <hash> <ext>
 _cachename() {
@@ -23,15 +27,15 @@ _download() {
 
     local cache="$(_cachename "${hash_}" "${ext}")"
 
-    test -f "${cache}" || curl -o "${cache}" "$url"
+    test -f "${cache}" || curl -L -o "${cache}" "$url"
     echo "${hash_} ${cache}" | "${hashalgo}sum" -c
 }
 
 case "$1" in
   go|golang)
     DEST="${PKGDIR}/go"
-    VERSION='1.18'
-    SHA256='e85278e98f57cdb150fe8409e6e5df5343ecb13cebf03a5d5ff12bd55a80264f'
+    VERSION='1.20'
+    SHA256='5a9ebcc65c1cce56e0d2dc616aff4c4cedcfbda8cc6f0288cc08cda3b18dcbf1'
     _download "https://dl.google.com/go/go${VERSION}.linux-amd64.tar.gz" tar.gz sha256 "$SHA256"
     CACHE="$(_cachename "${SHA256}" tar.gz)"
 
@@ -42,8 +46,48 @@ case "$1" in
     echo "Done"
 
     # Install utilities
-    firejail --profile="${PROFILEDIR}/install-go.profile" ${DEST}/dist/bin/go install github.com/go-delve/delve/cmd/dlv@latest
-    firejail --profile="${PROFILEDIR}/install-go.profile" ${DEST}/dist/bin/go install golang.org/x/tools/gopls@latest
+    $FIREJAIL --profile="${PROFILEDIR}/install-go.profile" ${DEST}/dist/bin/go install github.com/go-delve/delve/cmd/dlv@latest
+    $FIREJAIL --profile="${PROFILEDIR}/install-go.profile" ${DEST}/dist/bin/go install golang.org/x/tools/gopls@latest
+    $FIREJAIL --profile="${PROFILEDIR}/install-go.profile" ${DEST}/dist/bin/go install github.com/segmentio/golines@latest
+    ;;
+  rust|cargo)
+    DEST="${PKGDIR}/rust"
+    mkdir "$DEST" -v # We want this to fail in case it already exists
+    mkdir "$DEST/"{rustup,cargo,bin}
+
+    $FIREJAIL --profile="${PROFILEDIR}/install-rust.profile" \
+        bash -c 'curl https://sh.rustup.rs -sSf | bash -s -- --no-modify-path -y --profile=default -c rls -c rust-src'
+
+    mkdir "$DEST/cargo/registry"
+    ;;
+  ocaml|opam)
+    DEST="${PKGDIR}/ocaml"
+    VERSION="2.1.2"
+    SHA512="c0657ecbd4dc212587a4da70c5ff0402df95d148867be0e1eb1be8863a2851015f191437c3c99b7c2b153fcaa56cac99169c76ec94c5787750d7a59cd1fbb68b"
+    _download "https://github.com/ocaml/opam/releases/download/${VERSION}/opam-${VERSION}-x86_64-linux" bin sha512 "$SHA512"
+
+    mkdir "$DEST" -v
+    mkdir "$DEST/"{bin,root}
+
+    cp "/tmp/${SHA512}.bin" "$DEST/bin/opam" -v
+    chmod -v a+x "$DEST/bin/opam"
+
+    $FIREJAIL --profile="${PROFILEDIR}/install-ocaml.profile" "${DEST}"/bin/opam init --disable-sandboxing --no-setup
+    ;;
+  nodejs|npm|yarn|js)
+    DEST="${PKGDIR}/nodejs"
+    VERSION="18.16.0"
+    SHA256="44d93d9b4627fe5ae343012d855491d62c7381b236c347f7666a7ad070f26548"
+    _download "https://nodejs.org/dist/v18.16.0/node-v${VERSION}-linux-x64.tar.xz" tar.xz sha256 "$SHA256"
+
+    mkdir "$DEST" -v
+    mkdir "$DEST"/{node,npm,cache}
+    tar -xf "/tmp/${SHA256}.tar.xz" --strip-components=1 -C "$DEST/node"
+
+    $FIREJAIL --profile="${PROFILEDIR}/install-nodejs.profile" npm -g config set prefix=/home/antoine/.pkgs/nodejs/npm
+    $FIREJAIL --profile="${PROFILEDIR}/install-nodejs.profile" npm -g config set cache=/home/antoine/.pkgs/nodejs/cache
+    $FIREJAIL --profile="${PROFILEDIR}/install-nodejs.profile" npm -g install npm@latest
+    $FIREJAIL --profile="${PROFILEDIR}/install-nodejs.profile" npm -g install yarn
     ;;
   *)
     echo "Unknown package '$1'"
