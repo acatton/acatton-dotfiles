@@ -89,3 +89,9 @@
 [submodule "vim/pack/batteries/start/eunuch"]
 	path = vim/pack/batteries/start/eunuch
 	url = https://github.com/tpope/vim-eunuch.git
+[submodule "vim/pack/batteries/opt/jsonnet"]
+	path = vim/pack/batteries/opt/jsonnet
+	url = https://github.com/google/vim-jsonnet
+[submodule "vim/pack/batteries/opt/json5"]
+	path = vim/pack/batteries/opt/json5
+	url = https://github.com/gutenye/json5.vim
