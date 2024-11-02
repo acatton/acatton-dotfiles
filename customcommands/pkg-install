@@ -34,8 +34,8 @@ _download() {
 case "$1" in
   go|golang)
     DEST="${PKGDIR}/go"
-    VERSION='1.20'
-    SHA256='5a9ebcc65c1cce56e0d2dc616aff4c4cedcfbda8cc6f0288cc08cda3b18dcbf1'
+    VERSION='1.23.0'
+    SHA256='905a297f19ead44780548933e0ff1a1b86e8327bb459e92f9c0012569f76f5e3'
     _download "https://dl.google.com/go/go${VERSION}.linux-amd64.tar.gz" tar.gz sha256 "$SHA256"
     CACHE="$(_cachename "${SHA256}" tar.gz)"
 
@@ -62,8 +62,8 @@ case "$1" in
     ;;
   ocaml|opam)
     DEST="${PKGDIR}/ocaml"
-    VERSION="2.1.2"
-    SHA512="c0657ecbd4dc212587a4da70c5ff0402df95d148867be0e1eb1be8863a2851015f191437c3c99b7c2b153fcaa56cac99169c76ec94c5787750d7a59cd1fbb68b"
+    VERSION="2.2.1"
+    SHA512="7d3a7585af622e9b70fa4a3fff72f561b96f918b8f2ec55c6bd840a06c03934c461ef228a2ef6633ae295f1e546143b80ea846f2f54027f176ada37d11abbfbc"
     _download "https://github.com/ocaml/opam/releases/download/${VERSION}/opam-${VERSION}-x86_64-linux" bin sha512 "$SHA512"
 
     mkdir "$DEST" -v
@@ -81,7 +81,7 @@ case "$1" in
     _download "https://nodejs.org/dist/v18.16.0/node-v${VERSION}-linux-x64.tar.xz" tar.xz sha256 "$SHA256"
 
     mkdir "$DEST" -v
-    mkdir "$DEST"/{node,npm,cache}
+    mkdir "$DEST"/{node,npm,cache,cacheyarn}
     tar -xf "/tmp/${SHA256}.tar.xz" --strip-components=1 -C "$DEST/node"
 
     $FIREJAIL --profile="${PROFILEDIR}/install-nodejs.profile" npm -g config set prefix=/home/antoine/.pkgs/nodejs/npm
