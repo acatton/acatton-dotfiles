@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+# vim: set noet:
 set -e
 
 PROJECT_DIRECTORY=$(readlink -f $(dirname "${BASH_SOURE[0]}"))
 
-FILES=$(ls -1 "$PROJECT_DIRECTORY" | egrep -v "^(install.sh|README.md)$")
+FILES=$(ls -1 "$PROJECT_DIRECTORY" | egrep -v "^(install.sh|README.md|config)$")
 
 for f in $FILES
 do
