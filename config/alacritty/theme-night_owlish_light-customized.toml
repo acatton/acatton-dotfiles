@@ -1,0 +1,35 @@
+# Colors (Night Owlish Light)
+# Originally from https://github.com/alacritty/alacritty-theme/blob/09c3fb391ff40fedb3f167b3256cbe9255af131e/themes/night_owlish_light.toml
+# Customized by Antoine Catton (github.com/acatton)
+
+[colors.primary]
+background = '#ffffff'
+foreground = '#000000'
+
+[colors.normal]
+black   = '#000000'
+red     = '#d3423e'
+green   = '#2aa298'
+yellow  = '#daaa01'
+blue    = '#4876d6'
+magenta = '#403f53'
+cyan    = '#08916a'
+white   = '#cdcdcd'
+
+[colors.bright]
+black   = '#626767'
+red     = '#f76e6e'
+green   = '#49d0c5'
+yellow  = '#dac26b'
+blue    = '#5ca7e4'
+magenta = '#697098'
+cyan    = '#00c990'
+white   = '#989fb1'
+
+[colors.cursor]
+cursor = '#000000'
+text   = '#ffffff'
+
+[colors.selection]
+background = 'CellForeground'
+text       = 'CellBackground'
