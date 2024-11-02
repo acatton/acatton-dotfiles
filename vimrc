@@ -13,10 +13,16 @@ set tabstop=4 softtabstop=4 shiftwidth=4
 set expandtab
 
 set nobackup
-set undodir=~/.vim-swp/undo
 set undolevels=1000 undoreload=10000
 set undofile
-set directory=~/.vim-swp/swap/
+
+if empty($CUSTOM_FIREJAIL_ENV)
+  set undodir=~/.vim-swp/undo
+  set directory=~/.vim-swp/swap/
+else
+  set undodir=~/.pkgs/cache/vim-undo/
+  set directory=~/.pkgs/cache/vim-swap/
+endif
 
 set listchars=eol:¶,nbsp:%,tab:»\ 
 set list " Display invisiable characters (tabs, unbreakable space and end of line)
