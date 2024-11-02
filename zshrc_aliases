@@ -3,7 +3,7 @@ alias la="ls -A --color=auto"
 alias ll="ls -lh --color=auto"
 alias lla="ls -Alh --color=auto"
 
-export GREP_COLOR=31
+export GREP_COLORS=mt=31
 alias grep='grep --color=auto'
 
 alias compilepy='python -m py_comile'
