@@ -105,3 +105,7 @@ MODE_INDICATOR_VISUAL='%BVISUAL%b '
 MODE_INDICATOR_VLINE='%BV-LINE%b '
 
 export CUSTOM_FIREJAIL_PROFILEDIR="/home/antoine/Dev/perso/dotfiles/pkg_profiles"
+
+# Better man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
