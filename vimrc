@@ -94,7 +94,7 @@ function! LightlineFullFilename()
 endfunction
 
 " FZF
-let g:fzf_files_options = ['--preview=head -c 512 {}', '--preview-window=right:30%']
+let g:fzf_files_options = ['--preview=bat --color=always --style=numbers --line-range:500 {}', '--preview-window=right:30%']
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>d :LspDefinition<CR>
