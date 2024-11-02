@@ -1,0 +1,15 @@
+import = [
+    "~/.config/alacritty/theme-enfocado_light.toml"
+]
+
+[font]
+normal = { family = "IBM Plex Mono", style = "Regular" }
+size = 11
+
+[bell]
+command = { program = "/usr/bin/env", args = ["play", "/usr/share/sounds/freedesktop/stereo/bell.oga"] }
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 750
+blink_timeout = 0
