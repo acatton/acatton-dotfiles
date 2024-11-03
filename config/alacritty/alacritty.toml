@@ -3,7 +3,7 @@ import = [
 ]
 
 [font]
-normal = { family = "IBM Plex Mono", style = "Regular" }
+normal = { family = "terminal-font", style = "Regular" }
 size = 11
 
 [bell]
@@ -13,3 +13,6 @@ command = { program = "/usr/bin/env", args = ["play", "/usr/share/sounds/freedes
 style = { shape = "Block", blinking = "On" }
 blink_interval = 750
 blink_timeout = 0
+
+[env]
+TERM = "xterm-256color"
